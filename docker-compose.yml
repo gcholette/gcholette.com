@@ -13,7 +13,7 @@ services:
       - URL=gcholette.com
       - SUBDOMAINS=
       - VALIDATION=http
-      - EMAIL=gcholette.com #optional
+      - EMAIL=solutions@gcholette.com #optional
       - DHLEVEL=2048 #optional
     volumes:
       - ./public/:/usr/share/nginx/html
