@@ -1,60 +1,201 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Gabriel Cholette-Rioux</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon-16x16.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <script src="https://use.fontawesome.com/3ed028459b.js"></script>
+<html lang="en">
+<head>
+  <title>Gabriel Cholette-Rioux</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="shortcut icon" href="favicon.png"/>
+  <link rel="manifest" href="manifest.json"/>
+  <script src="https://use.fontawesome.com/3ed028459b.js"></script>
 
-    <style>
-      @import url("https://fonts.googleapis.com/css?family=Khand");
-      @import url("https://fonts.googleapis.com/css?family=Ubuntu+Mono");
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Khand");
 
-      body {
-        font-family: Arial, Helvetica, sans-serif;
-        color: rgb(236, 236, 236);
-        background: linear-gradient(to right, #22324a, #351f43);
-        background-size: cover;
-        font-family: "Khand";
-        text-align: center;
-        margin-top: 0px;
-        text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
-        animation: all 0.15s ease-in-out;
-      }
-      .gradient-line-container {
-        height: 92px;
+    * {
+      -webkit-user-select: none; /* Safari */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* IE10+/Edge */
+      user-select: none; /* Standard */
+    }
+
+    *:focus {
+      outline: 0 !important;
+    }
+
+    *:active {
+      outline: 0 !important;
+    }
+
+    * {
+      outline: 0 !important;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    a:active {
+      text-decoration: none;
+    }
+
+    a:visited {
+      text-decoration: none;
+      color: white;
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: rgb(236, 236, 236);
+      background: linear-gradient(to right, #22324a, #351f43);
+      background-size: cover;
+      font-family: "Khand";
+      text-align: center;
+      text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
+      animation: all 0.15s ease-in-out;
+    }
+
+    .gradient-line-container {
+      height: 45px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .gradient-line {
+      max-width: 4000px;
+      margin: 0 auto;
+      height: 3px;
+      text-align: center;
+      background: linear-gradient(to right, #9900ff, #00cc9e);
+      border-radius: 1700px;
+      box-shadow: 0px 0px 6px #3d5067;
+    }
+
+
+    .home-container {
+      position: relative;
+      width: 93%;
+      margin: 22vh auto 0;
+    }
+
+    .titles {
+      margin-bottom: 60px;
+      text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
+    }
+
+    .titles h1 {
+      font-family: 'Khand', sans-serif;
+      font-size: 63px;
+      font-weight: lighter;
+      margin: 0;
+    }
+
+    .titles p {
+      font-family: 'Khand', sans-serif;
+      font-size: 21px;
+      margin-top: 6px;
+    }
+
+    .email a {
+      color: #999999;
+      font-family: Khand, sans-serif;
+      font-size: 18px;
+      transition: all .15s ease-in-out;
+      text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
+      display: inline-block;
+    }
+
+    .email a:hover {
+      color: #d9d9d9;
+      transform: scale(1.1);
+      -webkit-transform: scale(1.1);
+      -moz-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+    }
+
+    .icons {
+      height: 75px;
+      margin-bottom: 15px;
+    }
+
+    .icons a {
+      color: #999999;
+      line-height: 75px;
+      font-size: 45px;
+      text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
+      margin-left: 25px;
+      margin-right: 25px;
+      transition: all .15s ease-in-out;
+    }
+
+    .icons a:hover {
+      text-decoration: none;
+      margin-bottom: 0px !important;
+      transform: scale(1.35);
+      -webkit-transform: scale(1.35);
+      -moz-transform: scale(1.35);
+      -ms-transform: scale(1.35);
+    }
+
+    .icons .fa-github:hover {
+      color: #895ebc !important;
+    }
+
+    .icons .fa-gitlab:hover {
+      color: #529f95 !important;
+    }
+
+    @media screen and (max-width: 630px) {
+      .titles h1 {
+        font-size: 10vw;
       }
 
-      .gradient-line {
-        max-width: 4000px;
-        margin: 0 auto;
-        height: 3px;
-        text-align: middle;
-        background: linear-gradient(to right, #9900ff, #00cc9e);
-        border-radius: 1700px;
-        box-shadow: 0px 0px 6px #3d5067;
+      .titles p {
+        font-size: calc(8px + 2.05vw);
       }
-    </style>
-  </head>
-  <body>
-    <div class="home-container">
-      <h1 class="fullName">Gabriel Cholette-Rioux</h1>
-      <p class="pro-title">
-        Passionate software developer
-      </p>
-      <div class="gradient-line-container">
-        <div class="gradient-line"></div>
-      </div>
-      <a
-        class="fa fa-github icone iconeGithub"
-        href="http://github.com/showlet"
-      >
-      </a>
-      <a class="pro-email" href="mailto:solutions@gcholette.com">
-        Solutions@GCholette.com
-      </a>
-    </div>
-  </body>
+    }
+
+    @media screen and (max-width: 250px) {
+      .email a {
+        font-size: 7.35vw;
+      }
+      .icons a {
+        font-size: 18vw;
+        margin-left: 9.5vw;
+        margin-right: 9.5vw;
+      }
+    }
+
+  </style>
+</head>
+<body>
+<div class="home-container">
+  <div class="titles">
+    <h1>Gabriel Cholette-Rioux</h1>
+    <p>
+      Passionate software developer
+    </p>
+  </div>
+  <div class="gradient-line-container">
+    <div class="gradient-line"></div>
+  </div>
+  <div class="icons">
+    <a
+        class="fa fa-github"
+        href="http://github.com/gcholette"></a>
+    <a
+        class="fa fa-gitlab"
+        href="https://gitlab.com/gcholette"></a>
+  </div>
+  <div class="email">
+    <a href="mailto:solutions@gcholette.com">
+      Solutions@GCholette.com
+    </a>
+  </div>
+</div>
+</body>
 </html>
