@@ -1,448 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Gabriel Cholette-Rioux</title>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta property="og:type" content="Website" />
-  <meta name="image" property="og:image" content="https://gcholette.com/app_img_2.png" />
-  <meta name="author" content="Gabriel Cholette-Rioux" />
-  <meta name="description" property="og:description" content="Gabriel Cholette Rioux personnal website.">
+  <head>
+    <title>Gabriel Cholette-Rioux</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:type" content="Website" />
+    <meta
+      name="image"
+      property="og:image"
+      content="https://gcholette.com/app_img_2.png"
+    />
+    <meta name="author" content="Gabriel Cholette-Rioux" />
+    <meta
+      name="description"
+      property="og:description"
+      content="Gabriel Cholette Rioux personnal website."
+    />
 
-  <link rel="shortcut icon" href="favicon.png"/>
-  <link rel="manifest" href="manifest.json"/>
-  <script src="https://use.fontawesome.com/3ed028459b.js"></script>
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="manifest" href="manifest.json" />
+    <script src="https://use.fontawesome.com/3ed028459b.js"></script>
 
-  <style>
-    @import url("https://fonts.googleapis.com/css?family=Khand");
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Khand");
+      :root {
+        --color1: #2ee4eb;
+        --color2: #663bff;
+        --color3: #a115ff;
+      }
 
-    .fade-in {
-            opacity: 0;
-            animation-name: fadeIn;
-            -webkit-animation-name: fadeIn;
-            -o-animation-name: fadeIn;
-            -ms-animation-name: fadeIn;
+      @keyframes breathingBackground2 {
+        0% {
+          background-position: 0% 50%;
+        }
 
-            animation-duration: 1s;
-            -webkit-animation-duration: 1s;
-            -o-animation-duration: 1s;
-            -ms-animation-duration: 1s;
+        50% {
+          background-position: 50% 0%;
+        }
 
-            animation-delay: 500ms;
-            -webkit-animation-delay: 500ms;
-            -o-animation-delay: 500ms;
-            -ms-animation-delay: 500ms;
+        100% {
+          background-position: 0% 50%;
+        }
+      }
 
-            -webkit-animation-fill-mode: forwards;
-            -o-animation-fill-mode: forwards;
-            -ms-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;
-    }
+      * {
+        user-select: none;
+      }
 
-    .fade-in5 {
-            opacity: 0;
-            animation-name: fadeIn;
-            -webkit-animation-name: fadeIn;
-            -o-animation-name: fadeIn;
-            -ms-animation-name: fadeIn;
+      *:focus {
+        outline: 0 !important;
+      }
 
-            animation-duration: 4s;
-            -webkit-animation-duration: 4s;
-            -o-animation-duration: 4s;
-            -ms-animation-duration: 4s;
+      *:active {
+        outline: 0 !important;
+      }
 
-            animation-delay: 1100ms;
-            -webkit-animation-delay: 1100ms;
-            -o-animation-delay: 1100ms;
-            -ms-animation-delay: 1100ms;
+      * {
+        outline: 0 !important;
+      }
 
-            -webkit-animation-fill-mode: forwards;
-            -o-animation-fill-mode: forwards;
-            -ms-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;
-    }
+      a:hover {
+        text-decoration: none;
+      }
 
-    .fade-in2 {
-            opacity: 0;
-            animation-name: fadeIn;
-            -webkit-animation-name: fadeIn;
-            -o-animation-name: fadeIn;
-            -ms-animation-name: fadeIn;
+      a:active {
+        text-decoration: none;
+      }
 
-            animation-duration: 4s;
-            -webkit-animation-duration: 4s;
-            -o-animation-duration: 4s;
-            -ms-animation-duration: 4s;
+      a:visited {
+        text-decoration: none;
+        color: white;
+      }
 
-            animation-delay: 800ms;
-            -webkit-animation-delay: 800ms;
-            -o-animation-delay: 800ms;
-            -ms-animation-delay: 800ms;
+      a {
+        text-decoration: none;
+        color: white;
+      }
 
-            -webkit-animation-fill-mode: forwards;
-            -o-animation-fill-mode: forwards;
-            -ms-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;
-    }
-
-    .fade-in3 {
-            opacity: 0;
-            animation-name: fadeIn;
-            -webkit-animation-name: fadeIn;
-            -o-animation-name: fadeIn;
-            -ms-animation-name: fadeIn;
-
-            animation-duration: 5s;
-            -webkit-animation-duration: 5s;
-            -o-animation-duration: 5s;
-            -ms-animation-duration: 5s;
-
-            animation-delay: 1600ms;
-            -webkit-animation-delay: 1600ms;
-            -o-animation-delay: 1600ms;
-            -ms-animation-delay: 1600ms;
-
-            -webkit-animation-fill-mode: forwards;
-            -o-animation-fill-mode: forwards;
-            -ms-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;
-    }
-
-    .fade-in4 {
-            opacity: 0;
-            animation-name: fadeIn;
-            -webkit-animation-name: fadeIn;
-            -o-animation-name: fadeIn;
-            -ms-animation-name: fadeIn;
-
-            animation-duration: 5s;
-            -webkit-animation-duration: 5s;
-            -o-animation-duration: 5s;
-            -ms-animation-duration: 5s;
-
-            animation-delay: 1900ms;
-            -webkit-animation-delay: 1900ms;
-            -o-animation-delay: 1900ms;
-            -ms-animation-delay: 1900ms;
-
-            -webkit-animation-fill-mode: forwards;
-            -o-animation-fill-mode: forwards;
-            -ms-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;
-    }
-
-    @keyframes fadeIn {
-            0% {opacity:0;}
-            100% {opacity:1;}
-    }
-
-    @-moz-keyframes fadeIn {
-            0% {opacity:0;}
-            100% {opacity:1;}
-    }
-
-    @-webkit-keyframes fadeIn {
-            0% {opacity:0;}
-            100% {opacity:1;}
-    }
-
-    @-o-keyframes fadeIn {
-            0% {opacity:0;}
-            100% {opacity:1;}
-    }
-
-    @-ms-keyframes fadeIn {
-            0% {opacity:0;}
-            100% {opacity:1;}
-    }
-
-    @-webkit-keyframes scale {
-            0% {
-                -webkit-transform: scaleX(0.1);
-            }
-            100% {
-                -webkit-transform: scaleX(1);
-            }
-    }
-
-    @keyframes scale {
-            0% {
-                transform: scaleX(0);
-            }
-            100% {
-                transform: scaleX(1);
-            }
-    }
-
-    @-o-keyframes scale {
-            5% {
-                -o-transform: scaleX(0.1);
-            }
-            100% {
-                -o-transform: scaleX(1);
-            }
-    }
-    @-ms-keyframes scale {
-            5% {
-                -o-transform: scaleX(0.1);
-            }
-            100% {
-                -o-transform: scaleX(1);
-            }
-    }
-    @keyframes grad {
-            0% {
-              background: linear-gradient(to right, #9900ff, #00cc9e);
-            }
-            100% {
-              background: linear-gradient(to right, #0904ff, #303c91);
-            }
-    }
-
-
-
-
-     * {
-      -webkit-user-select: none; /* Safari */
-      -moz-user-select: none; /* Firefox */
-      -ms-user-select: none; /* IE10+/Edge */
-      user-select: none; /* Standard */
-    }
-
-    *:focus {
-      outline: 0 !important;
-    }
-
-    *:active {
-      outline: 0 !important;
-    }
-
-    * {
-      outline: 0 !important;
-    }
-
-    a:hover {
-      text-decoration: none;
-    }
-
-    a:active {
-      text-decoration: none;
-    }
-
-    a:visited {
-      text-decoration: none;
-      color: white;
-    }
-
-    a {
-      text-decoration: none;
-      color: white;
-    }
-
-    .bg-anim {
-      background: linear-gradient(to right, #22324a, #351f43);
+      .bg-anim {
+        background: linear-gradient(to right, #22324a, #351f43);
         background-size: 150% 150%;
+      }
 
-        -webkit-animation: BG 45s ease infinite;
-        -moz-animation: BG 45s ease infinite;
-        -o-animation: BG 45s ease infinite;
-        animation: BG 45s ease infinite;
-    }
+      body {
+        font-family: "Khand";
+        color: rgb(236, 236, 236);
+        background: linear-gradient(to right, #22324a, #351f43);
+        background-size: cover;
+        text-align: center;
+        text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
+        animation: all 0.15s ease-in-out;
+      }
 
-    @-webkit-keyframes BG {
-              0%{background-position:10% 61%}
-                50%{background-position:90% 40%}
-                  100%{background-position:10% 61%}
-    }
-    @-moz-keyframes BG {
-              0%{background-position:10% 61%}
-                50%{background-position:90% 40%}
-                  100%{background-position:10% 61%}
-    }
-    @-o-keyframes BG {
-              0%{background-position:10% 61%}
-                50%{background-position:90% 40%}
-                  100%{background-position:10% 61%}
-    }
-    @keyframes BG {
-              0%{background-position:10% 61%}
-                50%{background-position:90% 40%}
-                  100%{background-position:10% 61%}
-    }
+      .gradient-line-container {
+        height: 45px;
+        max-width: 630px;
+        margin: 0 auto;
+      }
 
-    body {
-      font-family: "Khand";
-      color: rgb(236, 236, 236);
-      background: linear-gradient(to right, #22324a, #351f43);
-      background-size: cover;
-      text-align: center;
-      text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
-      animation: all 0.15s ease-in-out;
-    }
+      .gradient-line {
+        max-width: 4000px;
+        margin: 0 auto;
+        height: 3px;
+        text-align: center;
+        border-radius: 1700px;
+        box-shadow: 0px 0px 6px #3d5067;
+        /*background: linear-gradient(85deg, #9900ff, #00cc9e);
+        background-size: 145% 145%; */
+        background: linear-gradient(
+          to right,
+          var(--color1),
+          var(--color2),
+          var(--color3),
+          var(--color1),
+          var(--color2),
+          var(--color3),
+          var(--color1),
+          var(--color2),
+          var(--color3),
+          var(--color1),
+          var(--color2),
+          var(--color3),
+          var(--color1),
+          var(--color2),
+          var(--color3),
+          var(--color1),
+          var(--color2),
+          var(--color3),
+          var(--color1),
+          var(--color2),
+          var(--color3)
+        );
 
-    .gradient-line-container {
-      height: 45px;
-      max-width: 630px;
-      margin: 0 auto;
-      animation: scale 3s ease-out;
-    }
+        background-size: 2000% 100%;
+        animation: breathingBackground2 infinite 27s steps(820);
+      }
 
-    .gradient-line {
-      max-width: 4000px;
-      margin: 0 auto;
-      height: 3px;
-      text-align: center;
-      background: linear-gradient(to right, #9900ff, #00cc9e);
-      border-radius: 1700px;
-      box-shadow: 0px 0px 6px #3d5067;
-    }
+      .home-container {
+        position: relative;
+        width: 93%;
+        margin: 19vh auto 0;
+      }
 
-    .grad {
-        background: linear-gradient(85deg, #9900ff, #00cc9e);
-        background-size: 200% 200%;
+      .titles {
+        margin-bottom: 60px;
+        text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
+      }
 
-        -webkit-animation: Grad 10s ease infinite;
-        -moz-animation: Grad 10s ease infinite;
-        animation: Grad 10s ease infinite;
-    }
-
-    @-webkit-keyframes Grad {
-              0%{background-position:0% 51%}
-                50%{background-position:100% 50%}
-                  100%{background-position:0% 51%}
-    }
-    @-moz-keyframes Grad {
-              0%{background-position:0% 51%}
-                50%{background-position:100% 50%}
-                  100%{background-position:0% 51%}
-    }
-    @keyframes Grad {
-              0%{background-position:0% 51%}
-                50%{background-position:100% 50%}
-                  100%{background-position:0% 51%}
-    }
-
-
-    .home-container {
-      position: relative;
-      width: 93%;
-      margin: 19vh auto 0;
-    }
-
-    .titles {
-      margin-bottom: 60px;
-      text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
-    }
-
-    .titles h1 {
-      font-family: 'Khand', sans-serif;
-      font-size: 63px;
-      font-weight: lighter;
-      margin: 0;
-    }
-
-    .titles p {
-      font-family: 'Khand', sans-serif;
-      font-size: 21px;
-      margin-top: 6px;
-    }
-
-    .email a {
-      color: #999999;
-      font-family: Khand, sans-serif;
-      font-size: 18px;
-      transition: all .15s ease-in-out;
-      text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
-      display: inline-block;
-    }
-
-    .email a:hover {
-      color: #d9d9d9;
-      transform: scale(1.1);
-      -webkit-transform: scale(1.1);
-      -moz-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-    }
-
-    .icons {
-      height: 75px;
-      margin-bottom: 15px;
-    }
-
-    .icons a {
-      color: #999999;
-      line-height: 75px;
-      font-size: 45px;
-      text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
-      margin-left: 25px;
-      margin-right: 25px;
-      transition: all .15s ease-in-out;
-    }
-
-    .icons a:hover {
-      text-decoration: none;
-      margin-bottom: 0px !important;
-      transform: scale(1.35);
-      -webkit-transform: scale(1.35);
-      -moz-transform: scale(1.35);
-      -ms-transform: scale(1.35);
-    }
-
-    .icons .fa-github:hover {
-      color: #895ebc !important;
-    }
-
-    .icons .fa-gitlab:hover {
-      color: #529f95 !important;
-    }
-
-    @media screen and (max-width: 630px) {
       .titles h1 {
-        font-size: 10vw;
+        font-family: "Khand", sans-serif;
+        font-size: 63px;
+        font-weight: lighter;
+        margin: 0;
       }
 
       .titles p {
-        font-size: calc(8px + 2.05vw);
+        font-family: "Khand", sans-serif;
+        font-size: 21px;
+        margin-top: 6px;
       }
-    }
 
-    @media screen and (max-width: 250px) {
       .email a {
-        font-size: 7.35vw;
+        color: #999999;
+        font-family: Khand, sans-serif;
+        font-size: 18px;
+        transition: all 0.15s ease-in-out;
+        text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
+        display: inline-block;
       }
-      .icons a {
-        font-size: 18vw;
-        margin-left: 9.5vw;
-        margin-right: 9.5vw;
-      }
-    }
 
-  </style>
-</head>
-<body class="bg-anim">
-<div class="home-container fade-in">
-  <div class="titles">
-    <h1 class="fade-in2">Gabriel Cholette-Rioux</h1>
-    <p class="fade-in5">
-      Passionate software developer
-    </p>
-  </div>
-  <div class="gradient-line-container">
-    <div class="gradient-line grad"></div>
-  </div>
-  <div class="icons fade-in3">
-    <a
-        class="fa fa-github"
-        href="http://github.com/gcholette"></a>
-    <a
-        class="fa fa-gitlab"
-        href="https://gitlab.com/gcholette"></a>
-  </div>
-  <div class="email fade-in4">
-    <a href="mailto:solutions@gcholette.com">
-      solutions@gcholette.com
-    </a>
-  </div>
-</div>
-</body>
+      .email a:hover {
+        color: #d9d9d9;
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+      }
+
+      .icons {
+        height: 75px;
+        margin-bottom: 15px;
+      }
+
+      .icons a {
+        color: #999999;
+        line-height: 75px;
+        font-size: 45px;
+        text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
+        margin-left: 25px;
+        margin-right: 25px;
+        transition: all 0.15s ease-in-out;
+      }
+
+      .icons a:hover {
+        text-decoration: none;
+        margin-bottom: 0px !important;
+        transform: scale(1.35);
+        -webkit-transform: scale(1.35);
+        -moz-transform: scale(1.35);
+        -ms-transform: scale(1.35);
+      }
+
+      .icons .fa-github:hover {
+        color: #895ebc !important;
+      }
+
+      .icons .fa-gitlab:hover {
+        color: #529f95 !important;
+      }
+
+      @media screen and (max-width: 630px) {
+        .titles h1 {
+          font-size: 10vw;
+        }
+
+        .titles p {
+          font-size: calc(8px + 2.05vw);
+        }
+      }
+
+      @media screen and (max-width: 250px) {
+        .email a {
+          font-size: 7.35vw;
+        }
+        .icons a {
+          font-size: 18vw;
+          margin-left: 9.5vw;
+          margin-right: 9.5vw;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-anim">
+    <div class="home-container">
+      <div class="titles">
+        <h1>Gabriel Cholette-Rioux</h1>
+        <p>Passionate software developer</p>
+      </div>
+      <div class="gradient-line-container">
+        <div class="gradient-line"></div>
+      </div>
+      <div class="icons">
+        <a class="fa fa-github" href="http://github.com/gcholette"></a>
+        <a class="fa fa-gitlab" href="https://gitlab.com/gcholette"></a>
+      </div>
+      <div class="email">
+        <a href="mailto:solutions@gcholette.com"> solutions@gcholette.com </a>
+      </div>
+    </div>
+  </body>
 </html>
