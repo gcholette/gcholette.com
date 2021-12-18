@@ -22,16 +22,16 @@
     <style>
       @font-face {
         font-family: "Khand";
-        src: url("fonts/Khand.woff2");
+        src: url("fonts/Khand.ttf");
       }
       @font-face {
-        font-family: "icomoon";
-        src: url("fonts/icomoon.woff?flyy6a") format("woff");
+        font-family: "localicons";
+        src: url("fonts/Icons.ttf");
       }
 
       [class^="icon-"],
       [class*=" icon-"] {
-        font-family: "icomoon" !important;
+        font-family: "localicons" !important;
         display: inline-block;
       }
 
@@ -51,18 +51,15 @@
         --color3: #a115ff;
       }
 
-      @keyframes breathingBackground2 {
-        0% {
-          background-position: 0% 50%;
-        }
-
-        50% {
-          background-position: 50% 0%;
-        }
-
-        100% {
-          background-position: 0% 50%;
-        }
+      @keyframes gradAnim {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 50% 0%; }
+        100% { background-position: 0% 50%; }
+      }
+      @-webkit-keyframes gradAnim {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 50% 0%; }
+        100% { background-position: 0% 50%; }
       }
 
       * {
@@ -131,31 +128,29 @@
         background-size: 145% 145%; */
         background: linear-gradient(
           to right,
-          var(--color1),
-          var(--color2),
-          var(--color3),
-          var(--color1),
-          var(--color2),
-          var(--color3),
-          var(--color1),
-          var(--color2),
-          var(--color3),
-          var(--color1),
-          var(--color2),
-          var(--color3),
-          var(--color1),
-          var(--color2),
-          var(--color3),
-          var(--color1),
-          var(--color2),
-          var(--color3),
-          var(--color1),
-          var(--color2),
-          var(--color3)
+          #2ee4eb,
+          #663bff,
+          #a115ff,
+          #2ee4eb,
+          #663bff,
+          #a115ff,
+          #2ee4eb,
+          #663bff,
+          #a115ff,
+          #2ee4eb,
+          #663bff,
+          #a115ff,
+          #2ee4eb,
+          #663bff,
+          #a115ff,
+          #2ee4eb,
+          #663bff,
+          #a115ff
         );
 
         background-size: 2000% 100%;
-        animation: breathingBackground2 infinite 27s steps(820);
+        animation: gradAnim infinite 27s steps(820);
+        -webkit-animation: gradAnim infinite 27s steps(820);
       }
 
       .home-container {
@@ -266,7 +261,10 @@
       <div class="icons">
         <a class="icon-github" href="http://github.com/gcholette"></a>
         <a class="icon-gitlab" href="https://gitlab.com/gcholette"></a>
-        <a class="icon-linkedin" href="https://www.linkedin.com/in/gcholette/"></a>
+        <a
+          class="icon-linkedin"
+          href="https://www.linkedin.com/in/gcholette/"
+        ></a>
       </div>
       <div class="email">
         <a href="mailto:solutions@gcholette.com"> solutions@gcholette.com </a>
