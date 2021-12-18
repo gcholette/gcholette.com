@@ -16,13 +16,35 @@
       property="og:description"
       content="Gabriel Cholette Rioux personnal website."
     />
-
     <link rel="shortcut icon" href="favicon.png" />
     <link rel="manifest" href="manifest.json" />
-    <script src="https://use.fontawesome.com/3ed028459b.js"></script>
 
     <style>
-      @import url("https://fonts.googleapis.com/css?family=Khand");
+      @font-face {
+        font-family: "Khand";
+        src: url("fonts/Khand.woff2");
+      }
+      @font-face {
+        font-family: "icomoon";
+        src: url("fonts/icomoon.woff?flyy6a") format("woff");
+      }
+
+      [class^="icon-"],
+      [class*=" icon-"] {
+        font-family: "icomoon" !important;
+        display: inline-block;
+      }
+
+      .icon-github:before {
+        content: "\e900";
+      }
+      .icon-linkedin:before {
+        content: "\e901";
+      }
+      .icon-gitlab:before {
+        content: "\e902";
+      }
+
       :root {
         --color1: #2ee4eb;
         --color2: #663bff;
@@ -169,7 +191,7 @@
         display: inline-block;
       }
 
-      .email a:hover {
+      .email a::before :hover {
         color: #d9d9d9;
         transform: scale(1.1);
         -webkit-transform: scale(1.1);
@@ -194,18 +216,19 @@
 
       .icons a:hover {
         text-decoration: none;
-        margin-bottom: 0px !important;
         transform: scale(1.35);
-        -webkit-transform: scale(1.35);
-        -moz-transform: scale(1.35);
-        -ms-transform: scale(1.35);
+        margin-bottom: 0px !important;
       }
 
-      .icons .fa-github:hover {
+      .icons .icon-github:hover {
         color: #895ebc !important;
       }
 
-      .icons .fa-gitlab:hover {
+      .icons .icon-gitlab:hover {
+        color: #4c8adb !important;
+      }
+
+      .icons .icon-linkedin:hover {
         color: #529f95 !important;
       }
 
@@ -241,8 +264,9 @@
         <div class="gradient-line"></div>
       </div>
       <div class="icons">
-        <a class="fa fa-github" href="http://github.com/gcholette"></a>
-        <a class="fa fa-gitlab" href="https://gitlab.com/gcholette"></a>
+        <a class="icon-github" href="http://github.com/gcholette"></a>
+        <a class="icon-gitlab" href="https://gitlab.com/gcholette"></a>
+        <a class="icon-linkedin" href="https://www.linkedin.com/in/gcholette/"></a>
       </div>
       <div class="email">
         <a href="mailto:solutions@gcholette.com"> solutions@gcholette.com </a>
