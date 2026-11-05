@@ -41,9 +41,18 @@
         color: white;
       }
 
+      a:hover {
+        text-decoration: underline;
+        color: white;
+      }
+
       a {
         text-decoration: none;
         color: white;
+      }
+      
+      p {
+        margin: 0;
       }
 
       html {
@@ -79,9 +88,25 @@
 
       .home-container {
         position: relative;
-        margin: 0 auto;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        margin-top: 5vh;
       }
 
+      .texts {
+        display: flex;
+        flex-direction: column;
+        margin-top: 32px;
+        margin-bottom: 32px;
+        justify-content: center;
+      }
+      .links {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        justify-content: center;
+      }
 
     </style>
   </head>
@@ -91,7 +116,6 @@
       const getWindowWidth = () => window.innerWidth / 5
       const getWindowHeight = () => window.innerHeight / 3
 
-      // Globals
       let tick = 0
       const tv = {
         width: getWindowWidth(),
@@ -159,7 +183,15 @@ d88E`"888E` <888'888k  888E~?888L  888R Y888r   888R   :888'8888. -*8888888 -*88
 4888~  J8%                  @%                                                                  
  ^"===*"`                 :"                                                                    
       </p>
-      <p>Sometimes I write about stuff</p>
+      <span class="texts">
+        <p>Passionate software dev, sometimes I write about stuff</p>
+        <p></p>
+      </span>
+      <div class="links">
+        <a href="http://github.com/gcholette">[-- Github --]</a>
+        <a href="https://www.linkedin.com/in/gcholette/">[-- Linkedin --]</a>
+        <a href="https://docs.gcholette.com/">[-- Blog --]</a>
+      </div>
       </div>
   </body>
 </html>
