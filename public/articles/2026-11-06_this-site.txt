@@ -1,0 +1,29 @@
+                                == 2026 11 06 ==
+
+|=----------------------------------------------------------------------------=|
+|=--------------------------=[  T h i s  S i t e  ]=--------------------------=|
+|=----------------------------------------------------------------------------=|
+
+I recently got inspired by the text-based BBS ezines of the 80s/90s. It had 
+been a while since i needed to update my homepage / blog and this is the 
+aesthetic I chose to go with. I wanted something minimal and low-tech (no 
+framework or server). Blog posts / ctf writeups would be written as pure ascii 
+text files and rendered inside a 80 character wide container, taking inspiration 
+from retro terminal monitors.
+
+Regarding the tech, I really wanted a serverless dependency-free setup, even 
+tough it's more hands-on. So I'm going with just raw html/css/js. I'll have to 
+copy paste major changes all over as the downside. The setup probably won't 
+scale but it probably doesn't need to anyways. 
+
+All of the code, contents, formatting and ASCII "art" are to be written without 
+*any* use of AI. It's important for me in the current context to write with 
+intentionality and to keep it raw. For every article I read online, I'm always 
+scrutinizing to see if it was human written or not. I know i'm a bit obsessed 
+with it, but I think i'm not the only one wishing there was less AI in this 
+thing i'm really passionate about, and that the craft is kept alive.
+
+Articles will be posted sporadically here, some years will go by without any new
+article and others will benefit from a motivation boost. All the stuff on this 
+site is just for me to serve as either a outlet, publish technical knowledge, 
+CTF writeups or projects.

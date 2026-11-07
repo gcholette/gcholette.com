@@ -1,0 +1,124 @@
+*::selection {
+    background-color: rgba(104, 108, 114, 0.349);
+}
+
+
+
+*:focus {
+    outline: 0 !important;
+}
+
+*:active {
+    outline: 0 !important;
+}
+
+* {
+    outline: 0 !important;
+}
+
+a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: none;
+    border-bottom: 1px solid #e7e7e749;
+    padding-bottom: 2px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+p {
+    margin: 0;
+}
+
+html {
+    color-scheme: dark;
+    background: #0c0c0c;
+    height: 100%;
+}
+
+body {
+    font-family: monospace;
+    margin: 0;
+    min-height: 100%;
+    font-size: max(0.2rem, 1.6vmin);
+    white-space: pre;
+    color: rgb(236, 236, 236);
+    background-size: cover;
+    text-align: center;
+    text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.233);
+    animation: all 0.15s ease-in-out;
+
+}
+
+img {
+    width: 78ch;
+    margin: 0 auto;
+}
+
+.tv-snow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.03;
+}
+
+.home-container {
+    position: relative;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5vh;
+}
+
+.texts {
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    justify-content: center;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    justify-content: center;
+}
+
+
+::-webkit-scrollbar {
+    width: 1ch;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(81, 82, 82);
+    border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6b6b6b;
+}
+
+a.pic-link {
+    color: rgba(253, 252, 252, 0.486);
+}
+
+.eighty-wide-content {
+    width: 80ch;
+    text-align: left;
+    margin: 0 auto;
+}

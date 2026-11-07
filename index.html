@@ -1,291 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Gabriel Cholette-Rioux</title>
+    <title>gcholette.com</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta property="og:type" content="Website" />
     <meta
       name="image"
       property="og:image"
-      content="https://gcholette.com/app_img_2.png"
+      content="/app_img_2.png"
     />
-    <meta name="author" content="Gabriel Cholette-Rioux" />
+    <meta name="author" content="gcholette" />
     <meta
       name="description"
       property="og:description"
-      content="Gabriel Cholette Rioux personnal website."
+      content="gcholette's website"
     />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="manifest" href="manifest.json" />
- 
+    <link rel="stylesheet" href="/public/css/main.css">
     <style>
-      @font-face {
-        font-family: "Khand";
-        src: url("fonts/khand.ttf");
-      }
-      @font-face {
-        font-family: "localicons";
-        src: url("fonts/icons_new.ttf");
-      }
-
-      [class^="icon-"],
-      [class*=" icon-"] {
-        font-family: "localicons" !important;
-        display: inline-block;
-      }
-
-      .icon-github:before {
-        content: "\e906";
-      }
-      .icon-linkedin:before {
-        content: "\e900";
-      }
-      .icon-blog:before {
-        content: "\e90a";
-      }
-
-      :root {
-        --color1: #2ee4eb;
-        --color2: #663bff;
-        --color3: #a115ff;
-      }
-
-      @keyframes gradAnim {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 50% 0%; }
-        100% { background-position: 0% 50%; }
-      }
-      @-webkit-keyframes gradAnim {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 50% 0%; }
-        100% { background-position: 0% 50%; }
-      }
-
       * {
-        user-select: none;
-      }
-
-      *:focus {
-        outline: 0 !important;
-      }
-
-      *:active {
-        outline: 0 !important;
-      }
-
-      * {
-        outline: 0 !important;
-      }
-
-      a:hover {
-        text-decoration: none;
-      }
-
-      a:active {
-        text-decoration: none;
-      }
-
-      a:visited {
-        text-decoration: none;
-        color: white;
-      }
-
-      a {
-        text-decoration: none;
-        color: white;
-      }
-
-      .bg-anim {
-        background: linear-gradient(to right, #22324a, #351f43);
-        background-size: 150% 150%;
-      }
-
-      body {
-        font-family: "Khand";
-        color: rgb(236, 236, 236);
-        background: linear-gradient(to right, #22324a, #351f43);
-        background-size: cover;
-        text-align: center;
-        text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
-        animation: all 0.15s ease-in-out;
-      }
-
-      .gradient-line-container {
-        height: 45px;
-        max-width: 630px;
-        margin: 0 auto;
-      }
-
-      .gradient-line {
-        max-width: 4000px;
-        margin: 0 auto;
-        height: 3px;
-        text-align: center;
-        border-radius: 1700px;
-        box-shadow: 0px 0px 6px #3d5067;
-        /*background: linear-gradient(85deg, #9900ff, #00cc9e);
-        background-size: 145% 145%; */
-        background: linear-gradient(
-          to right,
-          #2ee4eb,
-          #663bff,
-          #a115ff,
-          #2ee4eb,
-          #663bff,
-          #a115ff,
-          #2ee4eb,
-          #663bff,
-          #a115ff,
-          #2ee4eb,
-          #663bff,
-          #a115ff,
-          #2ee4eb,
-          #663bff,
-          #a115ff,
-          #2ee4eb,
-          #663bff,
-          #a115ff
-        );
-
-        background-size: 2000% 100%;
-        animation: gradAnim infinite 27s steps(820);
-        -webkit-animation: gradAnim infinite 27s steps(820);
-      }
-
-      .home-container {
-        position: relative;
-        width: 93%;
-        margin: 19vh auto 0;
-      }
-
-      .titles {
-        margin-bottom: 60px;
-        text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
-      }
-
-      .titles h1 {
-        font-family: "Khand", sans-serif;
-        font-size: 63px;
-        font-weight: lighter;
-        margin: 0;
-      }
-
-      .titles p {
-        font-family: "Khand", sans-serif;
-        font-size: 21px;
-        margin-top: 6px;
-      }
-
-      .email a {
-        color: #999999;
-        font-family: Khand, sans-serif;
-        font-size: 18px;
-        transition: all 0.15s ease-in-out;
-        text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
-        display: inline-block;
-      }
-
-      .email a:hover {
-        color: #d9d9d9;
-        transform: scale(1.1);
-        -webkit-transform: scale(1.1);
-        -moz-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-      }
-
-      .icons {
-        height: 75px;
-        margin-bottom: 15px;
-      }
-
-      .icons a {
-        color: #999999;
-        line-height: 75px;
-        font-size: 45px;
-        text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.493);
-        margin-left: 25px;
-        margin-right: 25px;
-        transition: all 0.15s ease-in-out;
-      }
-
-      .icons a:hover {
-        text-decoration: none;
-        transform: scale(1.35);
-        margin-bottom: 0px !important;
-      }
-
-      .icons .icon-github:hover {
-        color: #895ebc !important;
-      }
-
-      .icons .icon-blog:hover {
-        color: #4c8adb !important;
-      }
-
-      .icons .icon-linkedin:hover {
-        color: #529f95 !important;
-      }
-
-      @media screen and (max-width: 630px) {
-        .titles h1 {
-          font-size: 10vw;
-        }
-
-        .titles p {
-          font-size: calc(8px + 2.05vw);
-        }
-      }
-
-      @media screen and (max-width: 250px) {
-        .email a {
-          font-size: 7.35vw;
-        }
-        .icons a {
-          font-size: 18vw;
-          margin-left: 9.5vw;
-          margin-right: 9.5vw;
-        }
+          user-select: none;
       }
     </style>
   </head>
-  <body class="bg-anim">
+  <body>
     <div class="home-container">
-      <div class="titles">
-        <h1>Gabriel Cholette-Rioux</h1>
-        <p>Passionate software developer</p>
+      <p class="ascii-art">
+                                                                                                
+                        .uef^"                  .d88"                  s         s              
+                      :d88E                    5888R                  :8        :8              
+     uL               `888E              u.    '888R        .u       .88       .88         .u   
+ .ue888Nc..  .udR88N   888E .z8k   ...ue888b    888R     ud8888.    :888ooo   :888ooo   ud8888. 
+d88E`"888E` <888'888k  888E~?888L  888R Y888r   888R   :888'8888. -*8888888 -*8888888 :888'8888.
+888E  888E  9888 'Y"   888E  888E  888R I888>   888R   d888 '88%"   8888      8888    d888 '88%"
+888E  888E  9888       888E  888E  888R I888>   888R   8888.+"      8888      8888    8888.+"   
+888E  888E  9888       888E  888E  888R I888>   888R   8888L        8888      8888    8888L     
+888& .888E  ?8888u../  888E  888E u8888cJ888   .888B . '8888c. .+  .8888Lu=  .8888Lu= '8888c. .+
+*888" 888&   "8888P'  m888N= 888>  "*888*P"    ^*888%   "88888%    ^%888*    ^%888*    "88888%  
+ `"   "888E    "P'     `Y"   888     'Y"         "%       "YP'       'Y"       'Y"       "YP'   
+.dWi   `88E                 J88"                                                                
+4888~  J8%                  @%                                                                  
+ ^"===*"`                 :"                                                                    
+      </p>
+      <span class="texts">
+        <p>Passionate software dev & ctf player, sometimes I write about stuff</p>
+        <p></p>
+      </span>
+      <div class="links">
+        <a href="http://github.com/gcholette">[-- Github --]</a>
+        <a href="/g/articles.html">[-- Articles --]</a>
       </div>
-      <div class="gradient-line-container">
-        <div class="gradient-line"></div>
       </div>
-      <div class="icons">
-        <a
-          class="icon-github"
-          href="http://github.com/gcholette"
-          aria-label="Github"
-        ></a>
-        <a
-          class="icon-linkedin"
-          aria-label="Linkedin"
-          href="https://www.linkedin.com/in/gcholette/"
-        ></a>
-        <a
-          class="icon-blog"
-          aria-label="gcholette blog"
-          href="https://docs.gcholette.com"
-        ></a>
-      </div>
-      <div class="email">
-        <a href="mailto:solutions@gcholette.com"> solutions@gcholette.com </a>
-      </div>
-    </div>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZRV88G5RT"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BZRV88G5RT');
-    </script>
+      <script src="/public/js/tv.js"></script>
   </body>
 </html>
