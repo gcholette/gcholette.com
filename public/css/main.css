@@ -54,6 +54,8 @@ body {
     text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.233);
     animation: all 0.15s ease-in-out;
 
+    overflow-y: scroll;
+
 }
 
 img {
@@ -78,6 +80,7 @@ img {
     display: flex;
     flex-direction: column;
     margin-top: 5vh;
+    padding-left: 1ch; /* for the scrollbar */
 }
 
 .texts {
