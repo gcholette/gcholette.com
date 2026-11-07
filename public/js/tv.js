@@ -44,7 +44,7 @@ function tvLoop(currentFrameTime) {
         tv.sizeDirty = false
     }
 
-    if ((currentFrameTime - lastFrameTime) > (1000 / 24)) {
+    if ((currentFrameTime - lastFrameTime) > (1000 / 18)) {
         lastFrameTime = currentFrameTime
         const imageData = ctx.createImageData(canvas.width, canvas.height);
         const buffer32 = new Uint32Array(imageData.data.buffer);
