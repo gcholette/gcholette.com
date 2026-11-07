@@ -1,5 +1,5 @@
-const getWindowWidth = () => window.innerWidth / 5
-const getWindowHeight = () => window.innerHeight / 3
+const getWindowWidth = () => window.innerWidth / 2
+const getWindowHeight = () => window.innerHeight / 2
 
 let tick = 0
 const tv = {

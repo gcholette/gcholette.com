@@ -69,7 +69,7 @@ img {
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    opacity: 0.03;
+    opacity: 0.02;
 }
 
 .home-container {
