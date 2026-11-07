@@ -1,7 +1,19 @@
-const getWindowWidth = () => window.innerWidth / 2
-const getWindowHeight = () => window.innerHeight / 2
+const getWindowWidth = () => {
+    console.log("Ratio:", window.innerWidth / window.innerHeight)
+    if (window.innerWidth > 1000) {
+        return window.innerWidth / 3
+    } else {
+        return window.innerWidth / 2
+    }
+}
+const getWindowHeight = () => {
+    if (window.innerWidth > 1000) {
+        return window.innerHeight / 2
+    } else {
+        return window.innerHeight
+    }
+}
 
-let tick = 0
 const tv = {
     width: getWindowWidth(),
     height: getWindowHeight(),
@@ -23,29 +35,30 @@ canvas.classList = "tv-snow"
 window.addEventListener("resize", onChangeWindowSize);
 const ctx = canvas.getContext('2d', { alpha: false });
 
-function tvLoop() {
+let lastFrameTime = performance.now()
+
+function tvLoop(currentFrameTime) {
     if (tv.sizeDirty) {
         canvas.width = tv.width
         canvas.height = tv.height
         tv.sizeDirty = false
     }
 
-    if (tick > 5) {
-        tick = 0
+    if ((currentFrameTime - lastFrameTime) > (1000 / 24)) {
+        lastFrameTime = currentFrameTime
         const imageData = ctx.createImageData(canvas.width, canvas.height);
         const buffer32 = new Uint32Array(imageData.data.buffer);
 
         for (let i = 0; i < buffer32.length; i++) {
             const rand = Math.random()
-            if (rand < 0.10) buffer32[i] = 0xffff00ff
-            else if (rand < 0.7) buffer32[i] = 0xff000000
-            else buffer32[i] = 0xffffffff;
+            if (rand < 0.02) buffer32[i] = 0x55550055
+            else if (rand < 0.9) buffer32[i] = 0xff000000
+            else buffer32[i] = 0x55555555;
         }
 
         ctx.putImageData(imageData, 0, 0);
         requestAnimationFrame(tvLoop);
     } else {
-        tick += 1
         requestAnimationFrame(tvLoop);
     }
 }
