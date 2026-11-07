@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>View picture</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:type" content="Website" />
+    <meta name="image" property="og:image" content="/app_img_2.png" />
+    <meta name="author" content="gcholette" />
+    <meta name="description" property="og:description" content="gcholette's website" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="stylesheet" href="/public/css/main.css">
+    <link rel="stylesheet" href="/public/css/article.css">
+    <style>
+        #pic {
+            width: 80ch;
+            margin: 0 auto;
+        }
+
+        #caption {
+            padding-top: 2ch;
+        }
+    </style>
+</head>
+
+<body class="bg-anim">
+    <div class="home-container">
+        <img id="pic" />
+        <p id="caption"></p>
+    </div>
+
+    <script src="/public/js/tv.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const pic = urlParams.get('pic');
+        document.getElementById("pic").setAttribute("src", pic)
+        document.getElementById("caption").innerText = pic
+    </script>
+</body>
+
+</html>
