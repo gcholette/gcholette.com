@@ -1,0 +1,9 @@
+* {
+    user-select: auto;
+}
+
+#content {
+    width: 80ch;
+    text-align: left;
+    margin: 0 auto;
+}

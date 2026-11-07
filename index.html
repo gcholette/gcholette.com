@@ -1,170 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Gabriel Cholette-Rioux</title>
+    <title>gcholette.com</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta property="og:type" content="Website" />
     <meta
       name="image"
       property="og:image"
-      content="https://gcholette.com/app_img_2.png"
+      content="/app_img_2.png"
     />
-    <meta name="author" content="Gabriel Cholette-Rioux" />
+    <meta name="author" content="gcholette" />
     <meta
       name="description"
       property="og:description"
-      content="Gabriel Cholette Rioux personnal website."
+      content="gcholette's website"
     />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="manifest" href="manifest.json" />
- 
-    <style>
-      * {
-        user-select: none;
-      }
-
-      *:focus {
-        outline: 0 !important;
-      }
-
-      *:active {
-        outline: 0 !important;
-      }
-
-      * {
-        outline: 0 !important;
-      }
-
-      a:visited {
-        text-decoration: none;
-        color: white;
-      }
-
-      a:hover {
-        text-decoration: underline;
-        color: white;
-      }
-
-      a {
-        text-decoration: none;
-        color: white;
-      }
-      
-      p {
-        margin: 0;
-      }
-
-      html {
-        color-scheme: dark;
-        background: #0c0c0c;
-        height: 100%;
-      }
-
-      body {
-        font-family: monospace;
-        margin: 0;
-        min-height: 100%;
-        font-size: max(0.2rem, 1.6vmin); 
-        white-space: pre;
-        color: rgb(236, 236, 236);
-        background-size: cover;
-        text-align: center;
-        text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.233);
-        animation: all 0.15s ease-in-out;
-
-      }
-
-      #tv-snow {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        pointer-events: none;
-        opacity: 0.03;
-      }
-
-      .home-container {
-        position: relative;
-        justify-content: center;
-        display: flex;
-        flex-direction: column;
-        margin-top: 5vh;
-      }
-
-      .texts {
-        display: flex;
-        flex-direction: column;
-        margin-top: 32px;
-        margin-bottom: 32px;
-        justify-content: center;
-      }
-      .links {
-        display: flex;
-        flex-direction: row;
-        gap: 16px;
-        justify-content: center;
-      }
-
-    </style>
+    <link rel="stylesheet" href="/public/css/main.css">
   </head>
-  <body class="bg-anim">
-    <canvas id="tv-snow"></canvas>
-    <script>
-      const getWindowWidth = () => window.innerWidth / 5
-      const getWindowHeight = () => window.innerHeight / 3
-
-      let tick = 0
-      const tv = {
-        width: getWindowWidth(),
-        height: getWindowHeight(),
-        sizeDirty: true
-      }
-
-      function onChangeWindowSize() {
-        const height = getWindowHeight()
-        const width = getWindowWidth()
-        tv.height = height
-        tv.width = width
-        tv.sizeDirty = true
-      }
-
-      window.addEventListener("resize", onChangeWindowSize);
-
-      const canvas = document.getElementById('tv-snow');
-      const ctx = canvas.getContext('2d', { alpha: false });
-
-      function tvLoop() {
-        if (tv.sizeDirty) {
-          canvas.width = tv.width
-          canvas.height = tv.height
-          tv.sizeDirty = false
-        }
-
-        if (tick > 5) {
-          tick = 0
-          const imageData = ctx.createImageData(canvas.width, canvas.height);
-          const buffer32 = new Uint32Array(imageData.data.buffer);
-          
-          for (let i = 0; i < buffer32.length; i++) {
-            const rand = Math.random()
-            if (rand < 0.10) buffer32[i] = 0xffff00ff
-            else if (rand < 0.7)  buffer32[i] = 0xff000000
-            else buffer32[i] = 0xffffffff;
-          }
-          
-          ctx.putImageData(imageData, 0, 0);
-          requestAnimationFrame(tvLoop);
-        } else {
-          tick += 1
-          requestAnimationFrame(tvLoop);
-        }
-      }
-
-      tvLoop()
-    </script>
+  <body>
     <div class="home-container">
       <p class="ascii-art">
                                                                                                 
@@ -184,14 +40,16 @@ d88E`"888E` <888'888k  888E~?888L  888R Y888r   888R   :888'8888. -*8888888 -*88
  ^"===*"`                 :"                                                                    
       </p>
       <span class="texts">
-        <p>Passionate software dev, sometimes I write about stuff</p>
+        <p>Passionate software dev & ctf player, sometimes I write about stuff</p>
         <p></p>
       </span>
       <div class="links">
         <a href="http://github.com/gcholette">[-- Github --]</a>
         <a href="https://www.linkedin.com/in/gcholette/">[-- Linkedin --]</a>
-        <a href="https://docs.gcholette.com/">[-- Blog --]</a>
+        <a href="/g/articles.html">[-- Articles --]</a>
       </div>
       </div>
+
+      <script src="/public/js/tv.js"></script>
   </body>
 </html>
