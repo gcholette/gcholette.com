@@ -5,6 +5,4 @@ function loadPicture() {
             pic = value
         }
     }
-
-    document.getElementById("")
 }

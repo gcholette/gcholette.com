@@ -1,11 +1,11 @@
 const getWindowWidth = () => {
-    console.log("Ratio:", window.innerWidth / window.innerHeight)
     if (window.innerWidth > 1000) {
         return window.innerWidth / 3
     } else {
         return window.innerWidth / 2
     }
 }
+
 const getWindowHeight = () => {
     if (window.innerWidth > 1000) {
         return window.innerHeight / 2

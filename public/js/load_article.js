@@ -3,7 +3,9 @@ async function load(s) {
     let d = await c.text()
     const tags = [...d.matchAll(/\[~.*~\]/g,)]
 
-    const showImages = false
+    console.info(`load("${s}")`)
+
+    const showImages = !!window.shouldLoadImagesInArticles
 
     tags.forEach(t => {
         const x = t[0]
@@ -12,11 +14,9 @@ async function load(s) {
 
         if (showImages) {
             d = d.replace(x, `
---------------------------------------------------------------------------------
 <center>
 <img src="${link}" />
 </center>
---------------------------------------------------------------------------------
 `)
         } else {
             d = d.replace(x, `<a class="pic-link" href="${pictureLink}">${x}</a>`)
