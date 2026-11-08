@@ -26,4 +26,5 @@ thing i'm really passionate about, and that the craft is kept alive.
 Articles will be posted sporadically here, some years will go by without any new
 article and others will benefit from a motivation boost. All the stuff on this 
 site is just for me to serve as either a outlet, publish technical knowledge, 
-CTF writeups or projects.
+CTF writeups or projects. The articles before this date were written in markdown
+and ported by hand loosely to the current format.

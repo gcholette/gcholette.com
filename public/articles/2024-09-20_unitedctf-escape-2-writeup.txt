@@ -123,7 +123,7 @@ fs.writeFileSync("output.txt", output)
 
 The output can then be sent to the server with a simple pwntools python script.
 
-+--------------------------------~<] python [>~--------------------------------+
++--------------------------------~<] Python [>~--------------------------------+
 from pwn import *
 import time
 

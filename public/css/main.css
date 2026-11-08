@@ -2,8 +2,6 @@
     background-color: rgba(104, 108, 114, 0.349);
 }
 
-
-
 *:focus {
     outline: 0 !important;
 }
@@ -23,13 +21,14 @@ a:visited {
 
 a:hover {
     text-decoration: none;
-    border-bottom: 1px solid #e7e7e749;
-    padding-bottom: 2px;
+    border-bottom: none;
+    background-color: rgba(104, 108, 114, 0.418);
+    color: rgba(253, 252, 252, 0.658);
 }
 
 a {
     text-decoration: none;
-    color: white;
+    color: rgba(253, 252, 252, 0.486);
 }
 
 p {
@@ -53,9 +52,7 @@ body {
     text-align: center;
     text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.233);
     animation: all 0.15s ease-in-out;
-
     overflow-y: scroll;
-
 }
 
 img {
@@ -80,7 +77,8 @@ img {
     display: flex;
     flex-direction: column;
     margin-top: 5vh;
-    padding-left: 1ch; /* for the scrollbar */
+    padding-left: 1ch;
+    /* for the scrollbar */
 }
 
 .texts {
@@ -114,10 +112,6 @@ img {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #6b6b6b;
-}
-
-a.pic-link {
-    color: rgba(253, 252, 252, 0.486);
 }
 
 .eighty-wide-content {
