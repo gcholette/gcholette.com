@@ -5,7 +5,7 @@
 ]=----------------------------------------------------------------------------=[
 
     > FYI, this writeup was made before revamping my site with this text based 
-      ascii look. There are more pictures that i'd like.
+      ascii look. There are more pictures than i'd like.
 
 In this writeup I will be going over the 3 `16 bit game ranking` challenges made
 by salt. They are `rev` and `pwn` challenges. They are fairly easy but since in
