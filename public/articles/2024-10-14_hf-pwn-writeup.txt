@@ -245,8 +245,8 @@ the cyclic string. The program should get a segmentation fault
 
 
 -----------------------------~<]  GDB session  [>~------------------------------
-gdb ./chal1
-run
+$ gdb ./chal1
+gdb-peda$ run
 57005
 bubbles1
 aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaa
@@ -285,8 +285,8 @@ instruction offset.
 
 
 -----------------------------~<]  GDB session  [>~------------------------------
-gdb ./chal1
-disass vote
+$ gdb ./chal1
+gdb-peda$ disass vote
 --------------------------------------------------------------------------------
 
 
@@ -300,8 +300,8 @@ We add a breakpoint to it and run the program:
 
 
 -----------------------------~<]  GDB session  [>~------------------------------
-break *vote+381
-run
+gdb-peda$ break *vote+381
+gdb-peda$ run
 --------------------------------------------------------------------------------
 
 
