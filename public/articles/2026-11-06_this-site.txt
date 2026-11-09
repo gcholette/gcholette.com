@@ -4,7 +4,6 @@
 ]=--------------------------=[  T h i s  S i t e  ]=--------------------------=[
 ]=----------------------------------------------------------------------------=[
 
-
 I recently got inspired by the text-based BBS ezines of the 80s/90s. It had 
 been a while since i needed to update my homepage / blog and this is the 
 aesthetic I chose to go with. I wanted something minimal and low-tech (no 

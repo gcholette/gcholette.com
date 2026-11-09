@@ -4,7 +4,6 @@
 ]=-----------------=[  UnitedCTF Shellcode Obfuscation 2  ]=------------------=[
 ]=----------------------------------------------------------------------------=[
 
-
 This writeup is for the UnitedCTF competition held in late 2024 online, for the 
 level 2 of the Shellcode Obfuscation series.
 
@@ -31,7 +30,7 @@ encode a part of the shellcode to obfuscate the `0x0f05` bytes.
 I already had a basic shellcode from the level 1 to start with:
 
 
-+---------------------------------~<] nasm [>~---------------------------------+
++--------------------------------~<]  NASM  [>~--------------------------------+
 section .text
     global _start
 
@@ -56,7 +55,7 @@ It writes a string to the stack and then calls the `write syscall`. For this
 challenge, the first part could be modified to the following to print `Popcorn`:
 
 
-+---------------------------------~<] nasm [>~---------------------------------+
++--------------------------------~<]  NASM  [>~--------------------------------+
 section .text
     global _start
 
@@ -93,7 +92,7 @@ I tought it would also be on the challenge so I just stuck with writing it to
 the stack which was shown as executable in the challenge instructions.
 
 
-+---------------------------------~<] nasm [>~---------------------------------+
++--------------------------------~<]  NASM  [>~--------------------------------+
 section .text
 global _start
 
@@ -137,7 +136,7 @@ I used this toolchain to build assembly code and convert it to shellcode:
 
 
 > build-shellcode.sh
-+---------------------------------~<] bash [>~---------------------------------+
++--------------------------------~<]  Bash  [>~--------------------------------+
 #!/bin/bash
 
 if [ -z "$1" ]; then
@@ -169,7 +168,7 @@ fi
 
 
 > parse-shellcode.py
-+--------------------------------~<] Python [>~--------------------------------+
++-------------------------------~<]  Python  [>~-------------------------------+
 #!/usr/bin/python3
 
 import sys
@@ -211,7 +210,7 @@ output still doesn't contain any prohibited bytes with a quick `ctrl+f`.
 The output can then added to the previous asm code
 
 
-+---------------------------------~<] nasm [>~---------------------------------+
++--------------------------------~<]  NASM  [>~--------------------------------+
 call_encoded_shellcode:
     call shellcode 
     encoded_shellcode:
