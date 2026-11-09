@@ -4,6 +4,7 @@
 ]=---------------------=[  UnitedCTF Escape 2 Writeup  ]=---------------------=[
 ]=----------------------------------------------------------------------------=[
 
+
 Here's the challenge description
 
     > A room, a terminal, a locked door asking for a secret code... and a broken 
@@ -17,7 +18,6 @@ There is also a free hint on the challenge
 
 We are also provided and ip and port to connect to with netcat.
 
-Upon connecting to the socket, we are prompted with this.
 
 ----------------------[  Terminal output once connected  ]----------------------
 
@@ -41,15 +41,18 @@ async function challenge() {
 > █
 --------------------------------------------------------------------------------
 
+
 The objective is to inject javascript in the eval statement to print the 
 `flag.txt` file, while evading constraints.
 
 Immediately we see this line which is our constraint, we can't use numbers or 
 letters (case insensitive).
 
+
 --------------------------------------------------------------------------------
 if (/[0-9a-z]/i.test(line)) throw new Error("ILLEGAL INPUT DETECTED!");
 --------------------------------------------------------------------------------
+
 
 The first thing that came to mind was JSFuck, but after 
 trying one command `console.log("Hello")`, i noticed that the length of my input
@@ -79,6 +82,7 @@ and add strings to it to build a command that would be input to `eval`.
 
 So I tried a simple command in multiple parts using the JSCrewIt converter
 
+
 +------------------------------~<] javascript [>~------------------------------+
 this.a=""
 this.a+="console.log("
@@ -86,6 +90,7 @@ this.a+="'aaaa"
 this.a+="')"
 console.log(eval(this.a))
 +------------------------------------------------------------------------------+
+
 
 Each line was created on the JSCrewIt website so i could check how many chars 
 were created to avoid going over 4065.
@@ -99,6 +104,7 @@ it works.
 
 Using the JScrewit npm package i created a simple script to output consecutive 
 js commands as JScrewit to a file
+
 
 +------------------------------~<] javascript [>~------------------------------+
 const JScrewIt = require('jscrewit')
@@ -121,7 +127,9 @@ let output = script.map((x) => JScrewIt.encode(x, options)).join('\n')
 fs.writeFileSync("output.txt", output)
 +------------------------------------------------------------------------------+
 
+
 The output can then be sent to the server with a simple pwntools python script.
+
 
 +--------------------------------~<] Python [>~--------------------------------+
 from pwn import *
@@ -139,6 +147,7 @@ for line in Lines:
 r.interactive()
 +------------------------------------------------------------------------------+
 
+
 [~ Terminal Output - /public/pictures/2024-09-20/scr5.png ~]
 
 With this i could mess around and try to find where `required` is defined, 
@@ -146,6 +155,7 @@ following the hint the challenge provided. I sumbled on
 this hackerone report: https://hackerone.com/reports/1877919 while searching. 
 Meaning that `process.mainModule.__proto__.require()` could be the solution. 
 I could then load `fs` and read the flag.
+
 
 +------------------------------~<] javascript [>~------------------------------+
 const script = [
@@ -171,7 +181,9 @@ const script = [
 ]
 +------------------------------------------------------------------------------+
 
+
 Generating this and running the equivalent JScrewit sequence using the python 
 script gives the flag
 
 [~ Terminal Output - /public/pictures/2024-09-20/scr6.png ~]
+

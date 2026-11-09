@@ -4,6 +4,7 @@
 ]=--------------------------=[  T h i s  S i t e  ]=--------------------------=[
 ]=----------------------------------------------------------------------------=[
 
+
 I recently got inspired by the text-based BBS ezines of the 80s/90s. It had 
 been a while since i needed to update my homepage / blog and this is the 
 aesthetic I chose to go with. I wanted something minimal and low-tech (no 
@@ -28,3 +29,4 @@ article and others will benefit from a motivation boost. All the stuff on this
 site is just for me to serve as either a outlet, publish technical knowledge, 
 CTF writeups or projects. The articles before this date were written in markdown
 and ported by hand loosely to the current format.
+

