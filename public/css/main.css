@@ -1,3 +1,7 @@
+html, body {
+  -webkit-text-size-adjust: 100%;
+}
+
 *::selection {
     background-color: rgba(104, 108, 114, 0.349);
 }
@@ -41,11 +45,15 @@ html {
     height: 100%;
 }
 
+@font-face { 
+  font-family: "unifont-edit"; 
+  src: url("/unifont_edit.woff") format('woff'); 
+}
+
 body {
-    font-family: monospace;
+    font-family: "unifont-edit", monospace; 
     margin: 0;
     min-height: 100%;
-    font-size: max(0.2rem, 1.6vmin);
     white-space: pre;
     color: rgb(236, 236, 236);
     background-size: cover;
@@ -53,6 +61,37 @@ body {
     text-shadow: 5px 5px 5px rgba(19, 19, 19, 0.233);
     animation: all 0.15s ease-in-out;
     overflow-y: scroll;
+}
+
+.texts {
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+    justify-content: center;
+}
+
+@media screen and (max-width: 760px) {
+  body {
+    font-size: clamp(9px, 1.1vw, 16px);
+  }
+  .texts {
+    font-size: clamp(11px, 1.1vw, 16px);
+    margin-bottom: 16px;
+  }
+}
+
+@media screen and (min-width: 761px) {
+  body {
+    font-size: 1rem;
+  }
+  .texts {
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+}
+
+.ascii-art {
+    font-size: max(0.2rem, 1.6vmin);
 }
 
 img {
@@ -76,17 +115,7 @@ img {
     justify-content: center;
     display: flex;
     flex-direction: column;
-    margin-top: 5vh;
-    padding-left: 1ch;
-    /* for the scrollbar */
-}
-
-.texts {
-    display: flex;
-    flex-direction: column;
-    margin-top: 32px;
-    margin-bottom: 32px;
-    justify-content: center;
+    margin-top: 10vh;
 }
 
 .links {
@@ -96,6 +125,13 @@ img {
     justify-content: center;
 }
 
+.article {
+    position: relative;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5vh;
+}
 
 ::-webkit-scrollbar {
     width: 1ch;
