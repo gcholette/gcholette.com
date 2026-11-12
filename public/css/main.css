@@ -46,12 +46,12 @@ html {
 }
 
 @font-face { 
-  font-family: "unifont-edit"; 
-  src: url("/unifont_edit.woff") format('woff'); 
+  font-family: "unifont-reduced"; 
+  src: url("/unifont-reduced.woff") format('woff'); 
 }
 
 body {
-    font-family: "unifont-edit", monospace; 
+    font-family: "unifont-reduced", monospace; 
     margin: 0;
     min-height: 100%;
     white-space: pre;
