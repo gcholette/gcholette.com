@@ -5,41 +5,33 @@ async function load(s) {
     d = parseCode(d)
 
     document.getElementById('content').innerHTML = d
-    hljs.highlightAll();
     document.getElementById('content').innerHTML += `\n<a href="/g/articles.html"><< Back to cheatsheets</a>`
+
+    hljs.highlightAll();
 }
 
 function parseCode(s) {
-    return parseNASM(s)
-}
-
-function parseNASM(s) {
-    const regex= /---------------------------------~<\]  NASM  \[>[\s\S]*?--------------------------------------------------------------------------------/sg
+    const regex= /-+\~<][\s\S]*?--------------------------------------------------------------------------------/sg
     const matches = s.matchAll(regex)
 
     let finalDocument = s
 
     for (const match of matches) {
-        finalContents = `<pre><code class="x86asm">${match[0]}</code></pre>`//nasmFormatter(match[0])
+        const splits = match[0].split("\n")
+        const top = splits[0]
+        const bottom = splits[splits.length-1]
+        const code = splits.slice(1, -1).join("\n")
+        let lang = undefined
+
+        if (top.toLowerCase().includes('nasm')) lang = 'x86asm'
+        if (top.toLowerCase().includes('python')) lang = 'python'
+        if (top.toLowerCase().includes(' c ')) lang = 'c'
+        if (top.toLowerCase().includes(' c++ ')) lang = 'cpp'
+
+        finalContents = `${top}<pre><code class="language-${lang}">${code}</code></pre>${bottom}`//nasmFormatter(match[0])
         finalDocument = finalDocument.replace(match[0], finalContents)
     }
 
     return finalDocument
 
-}
-
-function nasmFormatter(s) {
-    let finalCodeAsHtml = s
-
-    const instructions = ['mov', 'xor', 'add']
-    for (const i of instructions) {
-        finalCodeAsHtml = finalCodeAsHtml.replaceAll(new RegExp(`${i}\\b`, "g"), `<span class="instruction">${i}</span>`)
-    }
-
-    const registers = ['rax', 'rbx', 'al']
-    for (const i of registers) {
-        finalCodeAsHtml = finalCodeAsHtml.replaceAll(new RegExp(`${i}\\b`, "g"), `<span class="register">${i}</span>`)
-    }
-
-    return finalCodeAsHtml
 }
