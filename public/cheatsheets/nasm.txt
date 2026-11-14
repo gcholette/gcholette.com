@@ -1,0 +1,62 @@
+
+
+>------------------------------<  NASM Cheats  >-------------------------------<
+
+---------------------------------~<]  NASM  [>~---------------------------------
+; Basic elf64 executable
+; code.asm
+
+bits 64
+
+section .text
+    global _start
+
+_start:
+    xor rax, rax
+    mov rax, 0x74756c6153
+    push rax
+
+    xor rax, rax
+    mov al, 0x01
+    mov dil, 0x01
+    mov rsi, rsp
+    mov dl, 16
+    syscall
+
+    xor al, al
+    mov al, 0x3c
+    xor dil, dil
+    syscall
+--------------------------------------------------------------------------------
+
+$ nasm -f elf64 ./code.asm -o lib.o; \
+    ld lib.o -z max-page-size=0x100 -o bin.o; \
+    chmod +x bin.o;
+
+
+---------------------------------~<]  NASM  [>~---------------------------------
+; Basic elf64 executable
+; code.asm
+
+section .text
+    global _start
+
+_start:
+    xor rbx, rbx
+    mov rax, 0x74756c6153
+    push rax
+
+    xor rax, rax
+    mov al, 0x01
+    mov dil, 0x01
+    mov rsi, rsp
+    mov dl, 16
+    syscall
+
+    xor al, al
+    mov al, 0x3c
+    xor dil, dil
+    syscall
+--------------------------------------------------------------------------------
+
+That's it

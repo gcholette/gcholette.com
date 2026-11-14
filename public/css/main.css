@@ -63,6 +63,24 @@ body {
     overflow-y: scroll;
 }
 
+code {
+    font-family: "unifont-reduced", monospace; 
+    margin: 0;
+}
+
+pre {
+    margin: 0;
+}
+
+/* HLJS overrides */
+pre code.hljs {
+    display: inherit!important;
+    overflow-x: hidden!important;
+    padding: 0!important;
+    background: none!important;
+}
+
+
 .texts {
     display: flex;
     flex-direction: column;
@@ -154,4 +172,18 @@ img {
     width: 80ch;
     text-align: left;
     margin: 0 auto;
+}
+
+/* For code formatting */
+
+.symbol {
+    color: #c526da;
+}
+
+.register {
+    color: #daa126;
+}
+
+.instruction {
+    color: #31b3f0;
 }
