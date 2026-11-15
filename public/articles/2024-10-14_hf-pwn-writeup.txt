@@ -229,7 +229,6 @@ Let's first print a cyclic string to calculate the offset
 
 
 -----------------------------~<]  Python REPL  [>~------------------------------
-$ python
 >>> import pwn
 >>> pwn.cyclic(150)
 aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaa
