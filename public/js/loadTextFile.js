@@ -4,6 +4,7 @@
  */
 
 const CODE_SECTION_REGEX = /-+\~<][\s\S]*?--------------------------------------------------------------------------------/sg
+const SHELL_SECTION_REGEX = /(?<=^\s{0,16})\$[\s\S]+?(?=\n$)/gm // /(?:^\s+?)\$[\s\S]+?(?:^$)/gm // /^\$[\s\S]+?(?:^$)/gm
 
 function escapeHtml(unsafe) {
   return unsafe
@@ -24,7 +25,7 @@ function inferHeaderLanguage(top) {
     if (topLower.includes('python')) return 'python'
     if (topLower.includes(' c ')) return 'c'
     if (topLower.includes(' c++ ')) return 'cpp'
-    if (topLower.includes('gdb')) return 'bash'
+    if (topLower.includes('gdb')) return 'shell'
     if (topLower.includes('bash')) return 'bash'
     if (topLower.includes('ghidra disassembly')) return 'c'
     if (topLower.includes('javascript')) return 'javascript'
@@ -42,7 +43,19 @@ async function registerLanguages(s, hljs) {
     for (const match of matches) {
         const splits = match[0].split("\n")
         const top = splits[0]
-        langs.push(inferHeaderLanguage(top))
+        const lang = inferHeaderLanguage(top) 
+
+        // shell has a depencency on bash
+        if (lang === "shell") langs.push("bash")
+        langs.push(lang)
+    }
+
+    const shellMatches = s.matchAll(SHELL_SECTION_REGEX)
+    for (const _ of shellMatches) {
+        // shell has a depencency on bash
+        langs.push("shell")
+        langs.push("bash")
+        break
     }
 
     const uniqueLangs = [...new Set(langs)].filter(x => x)
@@ -67,9 +80,24 @@ function parseCode(s) {
         const code = splits.slice(1, -1).join("\n")
         const lang = inferHeaderLanguage(top)
 
-        finalContents = `${top}<pre><code class="language-${lang}">${escapeHtml(code)}</code></pre>${bottom}`//nasmFormatter(match[0])
-        console.log(code)
-        finalDocument = finalDocument.replace(match[0], finalContents)
+        const mutatedContents = `${top}<pre><code class="language-${lang}">${escapeHtml(code)}</code></pre>${bottom}`
+        finalDocument = finalDocument.replace(match[0], mutatedContents)
+    }
+
+    return finalDocument
+}
+
+/**
+ * @param {string} s 
+ */
+function parseShells(s) {
+    const matches = s.matchAll(SHELL_SECTION_REGEX)
+    let finalDocument = s
+
+    for (const match of matches) {
+        // console.log('[DEBUG] Shell found: ', match[0])
+        const mutatedContents = `<pre><code class="language-shell">${escapeHtml(match[0])}</code></pre>`
+        finalDocument = finalDocument.replace(match[0], mutatedContents)
     }
 
     return finalDocument
@@ -98,13 +126,16 @@ function parseImageTags(s) {
 async function load(s) {
     const fileRequest = await fetch(s)
     const originalText = await fileRequest.text()
-    const mutatedText = parseImageTags(parseCode(originalText))
+    const mutatedText = parseImageTags(parseShells(parseCode((originalText))))
 
-    // todo: safely interpolate code tags as innertext rather than innerhtml
     document.getElementById('content').innerHTML = mutatedText
-    document.getElementById('content').innerHTML += `\n<a href="/g/articles.html"><< Back to cheatsheets</a>`
+    if (s.includes('articles')) {
+        document.getElementById('content').innerHTML += `\n<a href="/g/articles.html"><< Back to articles</a>`
+    } else if (s.includes('cheats')) {
+        document.getElementById('content').innerHTML += `\n<a href="/g/cheats.html"><< Back to cheats</a>`
+    }
 
-    document.head.insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="/public/lib/highlight/styles/base16/circus.css">`)
+    document.head.insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="/public/lib/highlight/styles/gcholette.css">`)
 
     const { default: hljs } = await import('/public/lib/highlight/es/core.js')
     await registerLanguages(originalText, hljs)

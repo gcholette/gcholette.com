@@ -1,0 +1,59 @@
+/*!
+  Theme: gcholette
+  License: see project LICENSE
+  Touched: 2026
+*/
+.hljs{background:#0A0B11;color:#c3bab5}
+.hljs-comment{color:#697070}
+
+.hljs-punctuation,
+.hljs-tag{color:#ddc2f7}
+
+.hljs-tag .hljs-attr,
+.hljs-tag .hljs-name{color:#444}
+
+.hljs-attribute,
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-name,
+.hljs-selector-tag{font-weight:500}
+
+.hljs-deletion,
+.hljs-number,
+.hljs-quote,
+.hljs-selector-class,
+.hljs-selector-id,
+.hljs-string,
+.hljs-template-tag,
+.hljs-type{color:#c884e7}
+
+.hljs-section,
+.hljs-title{color:#9383fb;}
+
+.hljs-link,
+.hljs-operator,
+.hljs-regexp,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-symbol,
+.hljs-template-variable,
+.hljs-variable{color:#52d1bc}
+
+.hljs-literal{color:#f1b950}
+
+.hljs-addition,
+.hljs-built_in,
+.hljs-bullet,
+.hljs-code{color:#20b8b0}
+
+.hljs-meta{color:#d995ff}
+
+.hljs-meta 
+.hljs-string{color:#38a}
+
+.hljs-emphasis{font-style:italic}
+
+.hljs-strong{font-weight:500}
+
+.hljs-keyword{color:#6be9ff}

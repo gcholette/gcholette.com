@@ -268,6 +268,7 @@ var hljsGrammar = (function () {
     ];
 
     const GNU_CORE_UTILS = [
+      "gdb","ld","nasm","python","node","gcc","npm",
       "chcon",
       "chgrp",
       "chown",
